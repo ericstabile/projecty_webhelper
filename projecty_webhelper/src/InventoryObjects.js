@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const InventoryObjects = ({ data, setData }) => {
+const InventoryObjects = ({ data, setData, setLastID }) => {
   const [editing, setEditing] = useState(data.map(() => false));
   const [editIndex, setEditIndex] = useState(-1);
   const [editData, setEditData] = useState({ ID: '', Name: '', IconPath: '', IsStackable: '', MaxStack: '' });  
@@ -39,33 +39,35 @@ const InventoryObjects = ({ data, setData }) => {
     toggleEdit(index);
   };
 
+  const handleLoadJSON = (e) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const jsonData = event.target.result;
+      const parsedData = JSON.parse(jsonData);
+  
+      // Find the maximum ID in the loaded data
+      let maxID = 0;
+      parsedData.forEach((item) => {
+        if (item.ID > maxID) {
+          maxID = item.ID;
+        }
+      });
+  
+      setData(parsedData);
+      setLastID(maxID);
+      navigate('/inventory');
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+
   return (
     <div>
       <button onClick={() => navigate('/')}>Go Back</button>
       <input
         type="file"
         accept=".json"
-        onChange={(e) => handleFileChosen(e.target.files[0])}
+        onChange={handleLoadJSON}
       />
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setData([...data, { 
-            ID: e.target.ID.value, 
-            Name: e.target.Name.value, 
-            IconPath: e.target.IconPath.value, 
-            IsStackable: e.target.IsStackable.checked, 
-            MaxStack: e.target.MaxStack.value 
-          }]);
-        }}
-      >
-        <input name="ID" placeholder="ID" />
-        <input name="Name" placeholder="Name" />
-        <input name="IconPath" placeholder="IconPath" />
-        <input type="checkbox" name="IsStackable" />
-        <input name="MaxStack" placeholder="MaxStack" />
-        <button type="submit">Add</button>
-      </form>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -78,45 +80,45 @@ const InventoryObjects = ({ data, setData }) => {
           </tr>
         </thead>
         <tbody>
-  {data.map((item, index) => (
-    <tr key={index}>
-      {editing[index] ? (
-        <React.Fragment>
-          <td><input defaultValue={item.ID} id={`id-${index}`} /></td>
-          <td><input defaultValue={item.Name} id={`name-${index}`} /></td>
-          <td><input defaultValue={item.IconPath} id={`iconPath-${index}`} /></td>
-          <td><input type="checkbox" defaultChecked={item.IsStackable} id={`isStackable-${index}`} /></td>
-          <td><input defaultValue={item.MaxStack} id={`maxStack-${index}`} /></td>
-          <td>
-            <button onClick={() => saveEdit(
-              index,
-              document.getElementById(`id-${index}`).value,
-              document.getElementById(`name-${index}`).value,
-              document.getElementById(`iconPath-${index}`).value,
-              document.getElementById(`isStackable-${index}`).checked,
-              document.getElementById(`maxStack-${index}`).value
-            )}>Save</button>
-            <button onClick={() => toggleEdit(index)}>Cancel</button>
-          </td>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <td>{item.ID}</td>
-          <td>{item.Name}</td>
-          <td>{item.IconPath}</td>
-          <td>{item.IsStackable.toString()}</td>
-          <td>{item.MaxStack}</td>
-          <td>
-            <button onClick={() => toggleEdit(index)}>Edit</button>
-          </td>
-        </React.Fragment>
-      )}
-    </tr>
-  ))}
-</tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              {editing[index] ? (
+                <React.Fragment>
+                  <td><input defaultValue={item.ID} id={`id-${index}`} /></td>
+                  <td><input defaultValue={item.Name} id={`name-${index}`} /></td>
+                  <td><input defaultValue={item.IconPath} id={`iconPath-${index}`} /></td>
+                  <td><input type="checkbox" defaultChecked={item.IsStackable} id={`isStackable-${index}`} /></td>
+                  <td><input defaultValue={item.MaxStack} id={`maxStack-${index}`} /></td>
+                  <td>
+                    <button onClick={() => saveEdit(
+                      index,
+                      document.getElementById(`id-${index}`).value,
+                      document.getElementById(`name-${index}`).value,
+                      document.getElementById(`iconPath-${index}`).value,
+                      document.getElementById(`isStackable-${index}`).checked,
+                      document.getElementById(`maxStack-${index}`).value
+                    )}>Save</button>
+                    <button onClick={() => toggleEdit(index)}>Cancel</button>
+                  </td>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  <td>{item.ID}</td>
+                  <td>{item.Name}</td>
+                  <td>{item.IconPath}</td>
+                  <td>{item.IsStackable.toString()}</td>
+                  <td>{item.MaxStack}</td>
+                  <td>
+                    <button onClick={() => toggleEdit(index)}>Edit</button>
+                  </td>
+                </React.Fragment>
+              )}
+            </tr>
+          ))}
+        </tbody>
       </Table>
     </div>
   );
-                }  
+}
 
 export default InventoryObjects;

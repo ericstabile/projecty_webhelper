@@ -1,0 +1,156 @@
+/* App.css */
+.App {
+  text-align: center;
+  background-image: url('../src/Assets/bflyimg.png');
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: auto;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.table-container {
+  background-color: white;
+}
+
+.main-container {
+  width: 1000px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.header {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.project-y {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: background-color 0.3s;
+}
+
+.navbar:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.form-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.form-container .form-row:not(:last-child) {
+  padding-bottom: 10px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form-row label {
+  flex-basis: 25%;
+  text-align: right;
+}
+
+.form-row .value {
+  flex-basis: 75%;
+  text-align: left;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-grid label {
+  text-align: right;
+}
+
+.form-grid input[type='checkbox'] {
+  grid-column: span 2;
+}
+
+.add-item-header {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff6f00; /* Example color */
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Example text shadow */
+  margin-bottom: 20px;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: floatIn 0.5s ease-in-out;
+}
+
+.main-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  height: 1000px;
+  overflow-y: auto;
+}

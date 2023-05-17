@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './HomePage/HomePage';
-import InventoryObjects from './Inventory/InventoryObjects';
-import AddItemPage from './Inventory/AddNewInventoryObjectPage';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import AppNavigation from './Navigation/AppNavigation';
+import HomePage from './HomePage/HomePage';
+import InventoryObjects from './Inventory/InventoryObjects';
+import AddNewInventoryObjectPage from './Inventory/AddNewInventoryObjectPage';
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [inventoryObjectData, setInventoryObjectData] = useState([]);
   const [lastID, setLastID] = useState(0);
   
   const handleAddItem = (item) => {
     const newItem = { ...item, ID: lastID + 1 };
-    setData([...data, newItem]);
+    setInventoryObjectData([...inventoryObjectData, newItem]);
     setLastID(lastID + 1);
   };
 
   const handleFileChosen = (content) => {
-    setData(content);
+    setInventoryObjectData(content);
   };
 
   return (
@@ -31,11 +33,11 @@ const App = () => {
             path="/" element={<HomePage />} />
           <Route
             path="/inventory"
-            element={<InventoryObjects data={data} setData={setData} setLastID={setLastID} />}
+            element={<InventoryObjects inventoryObjectData={inventoryObjectData || []}  setInventoryObjectData={setInventoryObjectData} setLastID={setLastID} />}
           />
           <Route
             path="/add"
-            element={<AddItemPage onAddItem={handleAddItem} setData={setData} lastID={lastID} handleFileChosen={handleFileChosen} />}
+            element={<AddNewInventoryObjectPage onAddItem={handleAddItem} inventoryObjectData={inventoryObjectData || []}  setInventoryObjectData={setInventoryObjectData} lastID={lastID + 1} handleFileChosen={handleFileChosen} />}
           />
         </Routes>
       </div>

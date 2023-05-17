@@ -5,14 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoadJsonComponent from '../LoadJsonComponent';
 import InventoryObjectTableComponent from './InventoryObjectTableComponent';
 
-const InventoryObjects = () => {
-  const [data, setData] = useState([]);
+const InventoryObjects = ({ inventoryObjectData, setInventoryObjectData, setLastID }) => {
   const [editing, setEditing] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setEditing(data.map(() => false));
-  }, [data]);
+    setEditing(inventoryObjectData.map(() => false));
+  }, [inventoryObjectData]);
 
   const toggleEdit = (index) => {
     const newEditing = [...editing];
@@ -21,7 +20,7 @@ const InventoryObjects = () => {
   };
 
   const saveEdit = (index, id, name, iconPath, isStackable, maxStack) => {
-    const newData = [...data];
+    const newData = [...inventoryObjectData];
     newData[index] = {
       ID: id,
       Name: name,
@@ -29,12 +28,12 @@ const InventoryObjects = () => {
       IsStackable: isStackable,
       MaxStack: maxStack
     };
-    setData(newData);
+    setInventoryObjectData(newData);
     toggleEdit(index);
   };
 
   const handleFileChosen = (content) => {
-    setData(content);
+    setInventoryObjectData(content);
   };
 
   return (
@@ -42,7 +41,7 @@ const InventoryObjects = () => {
       <Button variant="primary" onClick={() => navigate('/')}>Go Back</Button>
       <LoadJsonComponent handleFileChosen={handleFileChosen} />
       <InventoryObjectTableComponent
-        data={data}
+        inventoryObjectData={inventoryObjectData || []}
         editing={editing}
         toggleEdit={toggleEdit}
         saveEdit={saveEdit}

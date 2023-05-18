@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+.header {
+  padding: 20px;
+  text-align: center;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 60px;
+  color: #ff6f00;
+  animation: popIn 0.5s ease-in-out;
+}
+
+.animate-pop {
+  animation: popIn 0.5s ease-in-out, glowEffect 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowEffect {
+  from {
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
+  }
+  to {
+    text-shadow: 0 0 60px rgba(255, 255, 255, 0.8), 0 0 80px rgba(255, 255, 255, 0.6), 0 0 100px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.project-y {
+  font-size: 180px;
+  font-family: 'Bubblegum Sans', cursive;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  color: black;
+}
+
+.glow {
+  animation: glowEffect 2s ease-in-out infinite alternate;
+}

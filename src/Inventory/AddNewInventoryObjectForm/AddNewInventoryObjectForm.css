@@ -1,0 +1,30 @@
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form-label,
+.label-left {
+  text-align: left;
+}
+
+.form-row .value {
+  flex-basis: 75%;
+  text-align: left;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-grid label {
+  text-align: right;
+}
+
+.form-grid input[type='checkbox'] {
+  grid-column: span 2;
+}

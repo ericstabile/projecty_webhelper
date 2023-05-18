@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import './AppNavigation.css';
 
 const AppNavigation = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div className="container">
-        <Link to="/" className="navbar-brand">Project Y</Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -20,13 +20,19 @@ const AppNavigation = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/" className="nav-link">Home</Link>
+              <NavLink exact to="/" className="nav-link" activeClassName="active">
+                Home
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/inventory" className="nav-link">Inventory</Link>
+              <NavLink to="/inventory" className="nav-link" activeClassName="active">
+                Inventory Service
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/add" className="nav-link">Add Item</Link>
+              <NavLink to="/add" className="nav-link" activeClassName="active">
+                Add Item
+              </NavLink>
             </li>
           </ul>
         </div>

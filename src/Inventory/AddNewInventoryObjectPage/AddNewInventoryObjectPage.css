@@ -1,0 +1,19 @@
+.main-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    height: 1000px;
+    overflow-y: auto;
+  }
+
+.form-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.form-container .form-row:not(:last-child) {
+padding-bottom: 10p x;
+}  

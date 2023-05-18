@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './CustomAnimatedLabel.css';
 
 const CustomAnimatedLabel = ({ text }) => {
   const [animationTrigger, setAnimationTrigger] = useState(false);

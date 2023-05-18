@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import '../../App.css'; // Import the CSS file
+import './AddNewInventoryObjectForm.css';
 
-const AddNewInventoryObjectFormComponent = ({ onAddItem }) => {
+const AddNewInventoryObjectForm = ({ onAddItem }) => {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [iconPath, setIconPath] = useState('');
@@ -52,4 +52,4 @@ const AddNewInventoryObjectFormComponent = ({ onAddItem }) => {
   );
 }
 
-export default AddNewInventoryObjectFormComponent;
+export default AddNewInventoryObjectForm;

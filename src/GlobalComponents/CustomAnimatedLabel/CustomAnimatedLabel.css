@@ -1,0 +1,23 @@
+.add-item-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff6f00;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+
+  .animate-float {
+    animation: floatIn 0.5s ease-in-out;
+  }
+
+  @keyframes floatIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

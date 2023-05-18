@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoadJsonComponent from '../LoadJsonComponent';
-import InventoryObjectTableComponent from './InventoryObjectTableComponent';
+import LoadJsonComponent from '../../GlobalComponents/LoadJsonComponent/LoadJsonComponent';
+import InventoryObjectTableComponent from '../InventoryObjectTableComponent/InventoryObjectTableComponent';
 
-const InventoryObjects = ({ inventoryObjectData, setInventoryObjectData, setLastID }) => {
+const InventoryServiceMainPage = ({ inventoryObjectData, setInventoryObjectData, setLastID }) => {
   const [editing, setEditing] = useState([]);
   const navigate = useNavigate();
 
@@ -50,4 +50,4 @@ const InventoryObjects = ({ inventoryObjectData, setInventoryObjectData, setLast
   );
 }
 
-export default InventoryObjects;
+export default InventoryServiceMainPage;

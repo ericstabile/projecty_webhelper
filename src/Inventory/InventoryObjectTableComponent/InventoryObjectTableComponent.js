@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button } from 'react-bootstrap';
-import EditInventoryObjectRow from './EditInventoryObjectRow';
-import ViewInventoryObjectRow from './ViewInventoryObjectRow';
+import { Table } from 'react-bootstrap';
+import EditInventoryObjectRow from '../InventoryObjectTableRow/EditInventoryObjectRow';
+import ViewInventoryObjectRow from '../InventoryObjectTableRow/ViewInventoryObjectRow';
 
 const InventoryObjectTableComponent = ({ inventoryObjectData, setInventoryObjectData }) => {
   const [editing, setEditing] = useState([]);

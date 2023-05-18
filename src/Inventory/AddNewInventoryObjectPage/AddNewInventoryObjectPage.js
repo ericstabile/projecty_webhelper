@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import CustomAnimatedLabel from '../CustomAnimatedLabel';
-import AddNewInventoryObjectFormComponent from './Component/AddNewInventoryObjectFormComponent';
+import CustomAnimatedLabel from '../../GlobalComponents/CustomAnimatedLabel/CustomAnimatedLabel';
+import AddNewInventoryObjectFormComponent from '../AddNewInventoryObjectForm/AddNewInventoryObjectForm';
+import './AddNewInventoryObjectPage.css';
 
 const AddNewInventoryObjectPage = ({ inventoryObjectData, setInventoryObjectData }) => {
   const navigate = useNavigate();

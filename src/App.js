@@ -6,6 +6,7 @@ import AppNavigation from './Navigation/AppNavigation';
 import HomePage from './HomePage/HomePage';
 import InventoryServiceMainPage from './Inventory/InventoryServiceMainPage/InventoryServiceMainPage';
 import AddNewInventoryObjectPage from './Inventory/AddNewInventoryObjectPage/AddNewInventoryObjectPage';
+import ExperimentalPage from './Experimental/ExperimentalPage';
 
 const App = () => {
   const [inventoryObjectData, setInventoryObjectData] = useState([]);
@@ -24,7 +25,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        {/* <AppNavigation /> */}
+        <AppNavigation />
         <Routes>
           <Route 
             path="/" 
@@ -54,6 +55,11 @@ const App = () => {
               />
             }
           />
+          <Route
+            path="/experimental"
+            element={
+              <ExperimentalPage />
+            } />
         </Routes>
       </div>
     </Router>

@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './AppNavigation.css';
 
 const AppNavigation = () => {
+  const [showExperimental, setShowExperimental] = useState(false);
+
+  const handleSwitchToggle = () => {
+    setShowExperimental((prevShowExperimental) => !prevShowExperimental);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div className="container">
@@ -24,17 +30,33 @@ const AppNavigation = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/inventory" className="nav-link" activeClassName="active">
-                Inventory Service
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/add" className="nav-link" activeClassName="active">
-                Add Item
-              </NavLink>
-            </li>
+            {showExperimental && (
+              <li className="nav-item">
+                <NavLink to="/experimental" className="nav-link" activeClassName="active">
+                  Experimental
+                </NavLink>
+              </li>
+            )}
+            {!showExperimental && (
+              <li className="nav-item">
+                <NavLink to="/inventory" className="nav-link" activeClassName="active">
+                  Inventory Service
+                </NavLink>
+              </li>
+            )}
           </ul>
+        </div>
+        <div className="form-check form-switch">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="switchToggle"
+            checked={showExperimental}
+            onChange={handleSwitchToggle}
+          />
+          <label className="form-check-label" htmlFor="switchToggle">
+            
+          </label>
         </div>
       </div>
     </nav>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './AddNewInventoryObjectForm.css';
 
-const AddNewInventoryObjectForm = ({ onAddItem, lastId }) => {
-  // const [id, setId] = useState(lastId);
+const AddNewInventoryObjectForm = ({ onAddItem, initialLastId }) => {
+  const [lastId, setLastId] = useState(initialLastId);
   const [name, setName] = useState('');
   const [iconPath, setIconPath] = useState('');
   const [isStackable, setIsStackable] = useState(false);
@@ -19,6 +19,10 @@ const AddNewInventoryObjectForm = ({ onAddItem, lastId }) => {
     };
     onAddItem(newItem);
   };
+
+  useEffect(() => {
+    setLastId(initialLastId);
+  }, [initialLastId]);
 
   return (
     <Form>

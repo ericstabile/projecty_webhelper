@@ -48,7 +48,7 @@ const App = () => {
             element={
               <AddNewInventoryObjectPage
                 onAddItem={handleAddItem}
-                lastID={lastID + 1}
+                lastID={lastID}
               />
             }
           />

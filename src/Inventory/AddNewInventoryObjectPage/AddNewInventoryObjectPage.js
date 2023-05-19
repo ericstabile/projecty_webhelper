@@ -15,7 +15,7 @@ const AddNewInventoryObjectPage = ({ onAddItem, lastID }) => {
       <div className="form-container">
         <AddNewInventoryObjectFormComponent 
           onAddItem={onAddItem}
-          lastID={lastID} />
+          initialLastId={lastID} />
       </div>
     </div>
   );

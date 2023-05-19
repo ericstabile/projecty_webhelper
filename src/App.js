@@ -48,10 +48,7 @@ const App = () => {
             element={
               <AddNewInventoryObjectPage
                 onAddItem={handleAddItem}
-                inventoryObjectData={inventoryObjectData || []}
-                setInventoryObjectData={setInventoryObjectData}
                 lastID={lastID + 1}
-                handleFileChosen={handleFileChosen}
               />
             }
           />

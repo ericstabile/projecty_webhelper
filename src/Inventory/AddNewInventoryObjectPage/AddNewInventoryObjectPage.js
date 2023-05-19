@@ -5,21 +5,17 @@ import CustomAnimatedLabel from '../../GlobalComponents/CustomAnimatedLabel/Cust
 import AddNewInventoryObjectFormComponent from '../AddNewInventoryObjectForm/AddNewInventoryObjectForm';
 import './AddNewInventoryObjectPage.css';
 
-const AddNewInventoryObjectPage = ({ inventoryObjectData, setInventoryObjectData }) => {
+const AddNewInventoryObjectPage = ({ onAddItem, lastID }) => {
   const navigate = useNavigate();
-
-  const handleAddItem = (newItem) => {
-    const newInventoryObjectData = [...inventoryObjectData, newItem];
-    setInventoryObjectData(newInventoryObjectData);
-    navigate('/inventory');
-  };
 
   return (
     <div className="main-container">
       <CustomAnimatedLabel text="Add Item" />
       <Button variant="primary" onClick={() => navigate('/inventory')}>Go Back</Button>
       <div className="form-container">
-        <AddNewInventoryObjectFormComponent onAddItem={handleAddItem} />
+        <AddNewInventoryObjectFormComponent 
+          onAddItem={onAddItem}
+          lastID={lastID} />
       </div>
     </div>
   );

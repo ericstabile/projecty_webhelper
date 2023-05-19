@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoadJsonComponent from '../../GlobalComponents/LoadJsonComponent/LoadJsonComponent';
@@ -11,38 +11,18 @@ const InventoryServiceMainPage = ({
   setInventoryObjectData,
   setLastID
 }) => {
-  const [editing, setEditing] = useState([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setEditing(inventoryObjectData.map(() => false));
-  }, [inventoryObjectData]);
-
-  const toggleEdit = (index) => {
-    const newEditing = [...editing];
-    newEditing[index] = !newEditing[index];
-    setEditing(newEditing);
-  };
-
-  const saveEdit = (index, id, name, iconPath, isStackable, maxStack) => {
-    const newData = [...inventoryObjectData];
-    newData[index] = {
-      ID: id,
-      Name: name,
-      IconPath: iconPath,
-      IsStackable: isStackable,
-      MaxStack: maxStack
-    };
-    setInventoryObjectData(newData);
-    toggleEdit(index);
-  };
-
+  
   const handleFileChosen = (content) => {
     setInventoryObjectData(content);
   };
 
   const handleAddNewItem = () => {
     navigate('/add');
+    const newID = inventoryObjectData.length > 0 ? 
+      Math.max(...inventoryObjectData.map(obj => obj.ID)) + 1 
+      : 1;
+    setLastID(newID);
   };
 
   const handleResetState = () => {
@@ -60,9 +40,6 @@ const InventoryServiceMainPage = ({
       <LoadJsonComponent handleFileChosen={handleFileChosen} />
       <InventoryObjectTableComponent
         inventoryObjectData={inventoryObjectData || []}
-        editing={editing}
-        toggleEdit={toggleEdit}
-        saveEdit={saveEdit}
       />
     </div>
   );

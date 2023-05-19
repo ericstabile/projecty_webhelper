@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 import EditInventoryObjectRow from '../InventoryObjectTableRow/EditInventoryObjectRow';
 import ViewInventoryObjectRow from '../InventoryObjectTableRow/ViewInventoryObjectRow';
 
-const InventoryObjectTableComponent = ({ inventoryObjectData, setInventoryObjectData }) => {
+const InventoryObjectTableComponent = ({ inventoryObjectData }) => {
   const [editing, setEditing] = useState([]);
   const [tableData, setTableData] = useState([]);
 

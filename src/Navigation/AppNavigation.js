@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './AppNavigation.css';
 
 const AppNavigation = () => {
@@ -55,7 +55,6 @@ const AppNavigation = () => {
             onChange={handleSwitchToggle}
           />
           <label className="form-check-label" htmlFor="switchToggle">
-            
           </label>
         </div>
       </div>

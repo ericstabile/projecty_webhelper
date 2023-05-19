@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './AddNewInventoryObjectForm.css';
 
-const AddNewInventoryObjectForm = ({ onAddItem }) => {
-  const [id, setId] = useState('');
+const AddNewInventoryObjectForm = ({ onAddItem, lastId }) => {
+  // const [id, setId] = useState(lastId);
   const [name, setName] = useState('');
   const [iconPath, setIconPath] = useState('');
   const [isStackable, setIsStackable] = useState(false);
@@ -11,7 +11,7 @@ const AddNewInventoryObjectForm = ({ onAddItem }) => {
 
   const handleAddItem = () => {
     const newItem = {
-      ID: id,
+      ID: lastId,
       Name: name,
       IconPath: iconPath,
       IsStackable: isStackable,
@@ -24,7 +24,7 @@ const AddNewInventoryObjectForm = ({ onAddItem }) => {
     <Form>
       <Form.Group className="mb-3" controlId="formId">
         <Form.Label className="form-label">ID:</Form.Label>
-        <Form.Control type="text" value={id} onChange={(e) => setId(e.target.value)} />
+        <Form.Label className="form-label">{lastId} - hi</Form.Label>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formName">
         <Form.Label className="form-label">Name:</Form.Label>

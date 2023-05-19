@@ -1,12 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import './ExperimentalPage.css';
-import IDField from './CardComponents/IDField';
-import NameField from './CardComponents/NameField';
-import IconPathField from './CardComponents/IconPathField';
-import IconImgField from './CardComponents/IconImgField';
-import IsStackableField from './CardComponents/IsStackableField';
-import MaxStackField from './CardComponents/MaxStackField';
+import CardComponentMapper from './CardComponentMapper';
 import useBoxTransform from './CustomHook/useBoxTransform';
 
 const ExperimentalPage = () => {
@@ -24,12 +19,13 @@ const ExperimentalPage = () => {
     <div className="experimental-page">
       <Draggable onDrag={(e, data) => trackPos(data)} position={position}>
         <div ref={boxRef} className="experimental-box">
-          <IDField />
-          <NameField />
-          <IconPathField />
-          <IconImgField />
-          <IsStackableField />
-          <MaxStackField />
+          <CardComponentMapper 
+            cardId={12}
+            cardName={"This IS Card"}
+            cardIconPath={""}
+            cardIconImg={""}
+            isCardStackable={true}
+            maxCardStack={99}/>
         </div>
       </Draggable>
     </div>

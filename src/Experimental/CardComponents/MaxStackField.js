@@ -1,10 +1,10 @@
 import React from 'react';
 
-const MaxStackField = () => {
+const MaxStackField = ({maxCardStack}) => {
   return (
     <div className="card-field">
       <div className="field-label">MaxStack</div>
-      <div className="field-value">10</div>
+      <div className="field-value">{maxCardStack}</div>
     </div>
   );
 };

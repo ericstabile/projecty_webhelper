@@ -26,19 +26,19 @@ const AddNewInventoryObjectForm = ({ onAddItem, initialLastId }) => {
 
   return (
     <Form>
-      <Form.Group className="mb-3" controlId="formId">
+      <Form.Group className="custom-form-group" controlId="formId">
         <Form.Label className="form-label">ID:</Form.Label>
         <Form.Label className="form-label">{lastId} - hi</Form.Label>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formName">
+      <Form.Group className="custom-form-group" controlId="formName">
         <Form.Label className="form-label">Name:</Form.Label>
         <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formIconPath">
+      <Form.Group className="custom-form-group" controlId="formIconPath">
         <Form.Label className="form-label">Icon Path:</Form.Label>
         <Form.Control type="text" value={iconPath} onChange={(e) => setIconPath(e.target.value)} />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formIsStackable">
+      <Form.Group className="custom-form-group" controlId="formIsStackable">
         <Form.Check
           type="checkbox"
           label="Is Stackable"
@@ -47,7 +47,7 @@ const AddNewInventoryObjectForm = ({ onAddItem, initialLastId }) => {
           className="label-left form-label" // Add the form-label class
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formMaxStack">
+      <Form.Group className="custom-form-group" controlId="formMaxStack">
         <Form.Label className="label-left form-label">Max Stack:</Form.Label>
         <Form.Control type="text" value={maxStack} onChange={(e) => setMaxStack(e.target.value)} />
       </Form.Group>

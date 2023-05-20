@@ -1,5 +1,3 @@
-/* Updated CSS */
-
 .custom-form-group {
   display: flex;
   flex-direction: row;
@@ -9,9 +7,9 @@
   transition: all 0.3s ease; /* Smooth transition effect for all property changes */
 }
 
-.custom-form-group:hover {
-  transform: scale(1.02); /* Slightly enlarge form groups when hovered for an interactive feel */
-}
+/* .custom-form-group:hover {
+  transform: scale(1.02);
+} */
 
 .form-label {
   flex: 1;

@@ -49,9 +49,14 @@ const AddNewInventoryObjectForm = ({ onAddItem, initialLastId }) => {
       </Form.Group>
       <Form.Group className="custom-form-group" controlId="formMaxStack">
         <Form.Label className="label-left form-label">Max Stack:</Form.Label>
-        <Form.Control type="text" value={maxStack} onChange={(e) => setMaxStack(e.target.value)} />
+        <Form.Control type="number" value={maxStack} onChange={(e) => setMaxStack(e.target.value)} />
       </Form.Group>
-      <Button variant="success" onClick={handleAddItem}>Add</Button>
+      <Button 
+        variant="success" 
+        onClick={handleAddItem} 
+        disabled={!name || !maxStack}>
+          Add
+        </Button>
     </Form>
   );
 }

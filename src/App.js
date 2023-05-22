@@ -7,6 +7,7 @@ import HomePage from './HomePage/HomePage';
 import InventoryServiceMainPage from './Inventory/InventoryServiceMainPage/InventoryServiceMainPage';
 import AddNewInventoryObjectPage from './Inventory/AddNewInventoryObjectPage/AddNewInventoryObjectPage';
 import ExperimentalPage from './Experimental/ExperimentalPage';
+import SpriteSheetServiceComponent from './SpritesheetService/SpriteSheetServiceComponent';
 
 const App = () => {
   const [inventoryObjectData, setInventoryObjectData] = useState([]);
@@ -56,6 +57,11 @@ const App = () => {
             path="/experimental"
             element={
               <ExperimentalPage />
+            } />
+          <Route
+            path="/sprite"
+            element={
+              <SpriteSheetServiceComponent />
             } />
         </Routes>
       </div>

@@ -1,0 +1,117 @@
+.SpriteSheetServiceComponent {
+  width: 980px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+}
+
+.InputFields {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.InputFields input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.InputFields input[type="file"] {
+  display: none;
+}
+
+.InputFields label {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', cursive;
+  font-weight: bold;
+}
+
+.InputFields label:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.SpriteDisplay {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+}
+
+.SpriteContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.SpriteContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.SpriteContainer::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.SpriteContainer canvas {
+  margin: 4px;
+  border: 1px solid #ccc;
+}
+
+.Sprite {
+  display: inline-block;
+  margin: 4px;
+}
+
+.SpriteDetailView {
+  text-align: center;
+}
+
+.SpriteDetailView canvas {
+  margin: 0 auto;
+  display: block;
+  border: 1px solid #ccc;
+}
+
+.SpriteDetailView p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.PaginationButtons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.PaginationButtons button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out;
+  font-weight: bold;
+  font-family: 'Comic Sans MS', cursive;
+  width: 150px;
+}
+
+.PaginationButtons button:hover {
+  transform: translateY(-3px);
+}

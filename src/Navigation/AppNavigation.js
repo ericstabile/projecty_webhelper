@@ -44,6 +44,13 @@ const AppNavigation = () => {
                 </NavLink>
               </li>
             )}
+            {!showExperimental && (
+              <li className="nav-item">
+                <NavLink to="/sprite" className="nav-link" activeClassName="active">
+                  Sprite Service
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
         <div className="form-check form-switch">

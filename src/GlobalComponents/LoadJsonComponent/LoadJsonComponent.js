@@ -8,12 +8,6 @@ const LoadJsonComponent = ({ handleFileChosen }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      for (let i = 0; i < 10; i++)
-      {
-        if (i === 1){
-          
-        }
-      }
       const fileReader = new FileReader();
       fileReader.onload = () => {
         const content = JSON.parse(fileReader.result);

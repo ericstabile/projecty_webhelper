@@ -1,13 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import './TopRowComponent.css';
 
-const TopRowComponent = ({ handleAddNewItem, handleResetState }) => {
-  const navigate = useNavigate();
-
+const TopRowComponent = ({ handleAddNewItem, handleResetState, handleSaveFile, nav }) => {
   const handleGoBack = () => {
-    navigate('/');
+    nav('/');
   };
 
   return (
@@ -25,6 +22,11 @@ const TopRowComponent = ({ handleAddNewItem, handleResetState }) => {
       <div className="button-column">
         <Button variant="danger" onClick={handleResetState} className="matrix-button">
           Reset
+        </Button>
+      </div>
+      <div className="button-column">
+        <Button variant="warning" onClick={handleSaveFile} className="matrix-button">
+          Save New File
         </Button>
       </div>
     </div>

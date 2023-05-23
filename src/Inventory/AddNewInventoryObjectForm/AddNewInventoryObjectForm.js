@@ -11,7 +11,7 @@ const AddNewInventoryObjectForm = ({ onAddItem, initialLastId, assetPathList }) 
   const [isIndividualSprite, setIsIndividualSprite] = useState(false);
   const [xLoc, setXLoc] = useState('');
   const [yLoc, setYLoc] = useState('');
-  const [iconPath, setIconPath] = useState('');
+  const [iconPath, setIconPath] = useState("Select Asset");
 
   const handleAddItem = () => {
     const newItem = {

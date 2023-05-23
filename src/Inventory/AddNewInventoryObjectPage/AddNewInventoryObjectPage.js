@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import CustomAnimatedLabel from '../../GlobalComponents/CustomAnimatedLabel/CustomAnimatedLabel';
@@ -10,9 +10,18 @@ const AddNewInventoryObjectPage = () => {
   const navigate = useNavigate();
 
   const {
+    inventoryObjectData,
+    setInventoryObjectData,
     lastID,
+    setLastID,
     assetPathList
   } = useContext(InventoryContext);
+
+  const handleAddItem = (item) => {
+    const newItem = { ...item, ID: lastID + 1 };
+    setInventoryObjectData([...inventoryObjectData, newItem]);
+    setLastID(lastID + 1);
+  };
 
   return (
     <div className="main-inventory-container">
@@ -21,8 +30,9 @@ const AddNewInventoryObjectPage = () => {
         Go Back
       </Button>
         <AddNewInventoryObjectFormComponent
-          onAddItem={onAddItem}
+          onAddItem={handleAddItem}
           initialLastId={lastID}
+          assetPathList={assetPathList}
         />
     </div>
   );

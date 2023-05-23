@@ -1,0 +1,21 @@
+.dropdown-menu {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    width:auto;
+}
+
+.dropdown-item {
+    color: black;
+    background-color: white;
+    padding: 10px;
+}
+
+.custom-input {
+  margin: 10px;
+  width: 93%;
+}
+
+.custom-button {
+  margin: 10px;
+}

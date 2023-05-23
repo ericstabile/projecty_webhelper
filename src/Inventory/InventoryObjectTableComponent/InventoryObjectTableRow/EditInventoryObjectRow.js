@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './EditInventoryObjectRow.css';
+import AssetListDropDown from '../../../GlobalComponents/AssetListDropDown/AssetListDropDown';
 
-const EditInventoryObjectRow = ({ item, index, saveEdit, toggleEdit }) => {
+const EditInventoryObjectRow = ({ item, index, saveEdit, toggleEdit, assetPathList }) => {
   const [id, setId] = useState(item.ID);
   const [name, setName] = useState(item.Name);
   const [iconPath, setIconPath] = useState(item.IconPath);
@@ -33,10 +34,10 @@ const EditInventoryObjectRow = ({ item, index, saveEdit, toggleEdit }) => {
         />
       </td>
       <td>
-        <input 
-          className="edit-row-input" 
-          value={iconPath} 
-          onChange={(e) => setIconPath(e.target.value)}
+        <AssetListDropDown
+          items={assetPathList || []}
+          iconPath={iconPath}
+          onSelect={setIconPath}
         />
       </td>
       <td className="relative-td">

@@ -7,7 +7,6 @@ import InventoryObjectTableComponent from '../InventoryObjectTableComponent/Inve
 import './InventoryServiceMainPage.css';
 import TopRowComponent from './TopRow/TopRowComponent';
 import { InventoryContext } from '../../GlobalComponents/Contexts/InventoryContext';
-import AssetListDropDown from '../../GlobalComponents/AssetListDropDown/AssetListDropDown';
 
 const InventoryServiceMainPage = () => {
   const navigate = useNavigate();
@@ -40,17 +39,20 @@ const InventoryServiceMainPage = () => {
     const jsonStr = JSON.stringify(inventoryObjectData, null, 2);
     const blob = new Blob([jsonStr], { type: "text/plain;charset=utf-8" });
     saveAs(blob, "inventory_object_data_v0.json");
-  }
+  }  
 
   return (
     <div className="main-container">
-      <AssetListDropDown items={assetPathList || []} />
-      <TopRowComponent handleAddNewItem={handleAddNewItem} handleResetState={handleResetState} handleSaveFile={handleSaveToFile} nav={navigate} />
+      <TopRowComponent 
+        handleAddNewItem={handleAddNewItem} 
+        handleResetState={handleResetState} 
+        handleSaveFile={handleSaveToFile} 
+        nav={navigate} />
       <LoadJsonComponent handleFileChosen={handleFileChosen} />
-      {/* {assetPathList && (
-        
-      )} */}
-      <InventoryObjectTableComponent inventoryObjectData={inventoryObjectData || []} setInventoryObjectData={setInventoryObjectData} />
+      <InventoryObjectTableComponent 
+        inventoryObjectData={inventoryObjectData || []} 
+        setInventoryObjectData={setInventoryObjectData}
+        assetPathList={assetPathList} />
     </div>
   );
 };

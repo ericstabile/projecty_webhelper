@@ -3,7 +3,7 @@
   import EditInventoryObjectRow from './InventoryObjectTableRow/EditInventoryObjectRow';
   import ViewInventoryObjectRow from './InventoryObjectTableRow/ViewInventoryObjectRow';
 
-  const InventoryObjectTableComponent = ({ inventoryObjectData, setInventoryObjectData }) => {
+  const InventoryObjectTableComponent = ({ inventoryObjectData, setInventoryObjectData, assetPathList }) => {
     const [editing, setEditing] = useState([]);
     const [tableData, setTableData] = useState([]);
 
@@ -59,6 +59,7 @@
                   index={index}
                   saveEdit={saveEdit}
                   toggleEdit={toggleEdit}
+                  assetPathList={assetPathList}
                 />
               ) : (
                 <ViewInventoryObjectRow

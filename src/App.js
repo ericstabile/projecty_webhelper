@@ -13,7 +13,7 @@ import { InventoryContext } from './GlobalComponents/Contexts/InventoryContext';
 const App = () => {
   const [inventoryObjectData, setInventoryObjectData] = useState([]);
   const [lastID, setLastID] = useState(0);
-  const [assetPath, setAssetPath] = useState([]);
+  const [assetPathList, setAssetPathList] = useState([]);
 
   const handleAddItem = (item) => {
     const newItem = { ...item, ID: lastID + 1 };
@@ -28,18 +28,25 @@ const App = () => {
   const loadAssetPath = () => {
     const assetStrings =
     [
-      'assets/bass'
-      , 'assets/grass'];
-
-      assetStrings.forEach((string) => {
-        setAssetPath((prevAssetPath) => [...prevAssetPath, string]);
-      });
+      'res://Assets/PNG/LargeSpriteSheets/ultimate_classic_32.png',
+      'res://Assets/PNG/LargeSpriteSheets/ultimate_classic_dark_32.png',
+      'res://Assets/PNG/LargeSpriteSheets/ultimate_classic_light_32.png'
+    ];
+  
+    const newAssetPathList = [...assetPathList];
+  
+    assetStrings.forEach((string) => {
+      console.log(string);
+      newAssetPathList.push(string);
+    });
+  
+    setAssetPathList(newAssetPathList);
   }
 
   useEffect(() => {
     loadAssetPath();
   }, []);
-
+  
   return (
     <InventoryContext.Provider 
       value={{ 
@@ -47,8 +54,7 @@ const App = () => {
         setInventoryObjectData, 
         lastID, 
         setLastID,
-        assetPath,
-        setAssetPath 
+        assetPathList
       }}
     >
       <Router>

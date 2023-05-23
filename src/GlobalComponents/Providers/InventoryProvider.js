@@ -13,7 +13,8 @@ export const InventoryProvider = ({ children }) => {
     , lastID
     , setLastID
     , assetPathList
-    , setAssetPathList };
+    , setAssetPathList
+  };
 
   return (
     <InventoryContext.Provider value={value}>

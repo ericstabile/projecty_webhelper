@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { BiSave } from "react-icons/bi";
+import { GiCancel } from "react-icons/gi";
 import './EditInventoryObjectRow.css';
 import AssetListDropDown from '../../../GlobalComponents/AssetListDropDown/AssetListDropDown';
 
@@ -71,23 +73,23 @@ const EditInventoryObjectRow = ({ item, index, saveEdit, toggleEdit, assetPathLi
           </label>
         </div>
       </td>
-      <td>
+      <td className="x-y-td">
         <input
-          className="edit-row-input max-stack-input"
+          className="x-y-input"
           value={xLoc}
           onChange={(e) => setXLoc(e.target.value)}
         />
       </td>
-      <td>
+      <td className="x-y-td">
         <input
-          className="edit-row-input max-stack-input"
+          className="x-y-input"
           value={yLoc}
           onChange={(e) => setYLoc(e.target.value)}
         />
       </td>
       <td>
-        <Button variant="success" onClick={handleSave}>Save</Button>
-        <Button variant="secondary" onClick={() => toggleEdit(index)}>Cancel</Button>
+        <Button variant="success" onClick={handleSave}><BiSave /></Button>
+        <Button variant="danger" onClick={() => toggleEdit(index)}><GiCancel /></Button>
       </td>
     </>
   );

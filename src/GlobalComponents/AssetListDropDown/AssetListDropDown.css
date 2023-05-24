@@ -3,6 +3,7 @@
     visibility: visible;
     opacity: 1;
     width:auto;
+    overflow-x: auto;
 }
 
 .dropdown-item {

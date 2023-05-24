@@ -1,10 +1,14 @@
-.main-inventory-container {
+/* .main-inventory-container {
   width:50%;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  height: 1000px;
+  height: 700px;
+  overflow-y: auto;
+} */
+
+.main-inventory-container {
   overflow-y: auto;
 }
 
@@ -13,7 +17,6 @@
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,19 +40,27 @@
 }
 
 .custom-button {
-  background-color: #007bff;
+  background-color: #b79905;
   border: none;
   color: white;
-  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  cursor: none;
+  padding-bottom: 10px;
 }
 
 .custom-button:hover {
-  background-color: #0069d9;
+  background-color: #020910;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #000; /* Add a border to resemble a stamp edge */
+  border-radius: 5px; /* Round the corners */
+  padding: 10px; /* Add some padding to give space inside the stamp */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add a shadow to give depth */
+  background-color: #eee; /* Add a background color */
 }

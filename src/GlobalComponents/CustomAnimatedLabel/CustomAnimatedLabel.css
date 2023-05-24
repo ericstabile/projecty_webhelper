@@ -1,23 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Puddles&display=swap');
+
 .add-item-header {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ff6f00;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-  }
+  font-size: 32px;
+  font-weight: bold;
+  font-family: 'Rubik Puddles', cursive;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
-  .animate-float {
-    animation: floatIn 0.5s ease-in-out;
-  }
+  margin-top:10px;
 
-  @keyframes floatIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Create a linear gradient for the background */
+  background: linear-gradient(to bottom, #114b21, #137d54);
+  /* Clip the background to the text */
+  -webkit-background-clip: text;
+  /* Make the text transparent so the background shows through */
+  -webkit-text-fill-color: transparent;
+}
+
+.animate-float {
+  animation: floatIn 0.5s ease-in-out;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
   }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

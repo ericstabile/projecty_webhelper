@@ -1,5 +1,3 @@
-/* EditInventoryObjectRow.css */
-
 .edit-row-input {
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -16,6 +14,14 @@
   
   .id-input, .max-stack-input {
     width: 50%; /* Adjust this value to your liking */
+  }
+
+  .x-y-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    width: 100%;
   }
   
   .checkbox-container {
@@ -88,3 +94,6 @@
     position: relative;
   }
   
+  .x-y-td {
+    width: 50px;
+  }

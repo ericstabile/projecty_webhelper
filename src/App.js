@@ -15,16 +15,6 @@ const App = () => {
   const [lastID, setLastID] = useState(0);
   const [assetPathList, setAssetPathList] = useState([]);
 
-  // const handleAddItem = (item) => {
-  //   const newItem = { ...item, ID: lastID + 1 };
-  //   setInventoryObjectData([...inventoryObjectData, newItem]);
-  //   setLastID(lastID + 1);
-  // };
-
-  // const handleFileChosen = (content) => {
-  //   setInventoryObjectData(content);
-  // };
-
   const loadAssetPath = () => {
     const assetStrings =
     [

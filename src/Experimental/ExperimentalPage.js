@@ -21,7 +21,7 @@ const ExperimentalPage = () => {
         <div ref={boxRef} className="experimental-box">
           <CardComponentMapper 
             cardId={12}
-            cardName={"This IS Card"}
+            cardName={"Card"}
             cardIconPath={""}
             cardIconImg={""}
             isCardStackable={true}

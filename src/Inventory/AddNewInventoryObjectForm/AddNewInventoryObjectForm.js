@@ -21,8 +21,8 @@ const AddNewInventoryObjectForm = ({ onAddItem, initialLastId, assetPathList }) 
       IsStackable: isStackable,
       MaxStack: maxStack,
       IsIndividualSprite: isIndividualSprite,
-      XLoc: xLoc,
-      YLoc: yLoc
+      X: xLoc,
+      Y: yLoc
     };
     onAddItem(newItem);
   };

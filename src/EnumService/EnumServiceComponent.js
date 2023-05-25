@@ -4,68 +4,68 @@ import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonCom
 import './EnumServiceComponent.css';
 
 const EnumServiceComponent = () => {
-    const [fileData, setFileData] = useState([]);
-    const [enumBody, setEnumBody] = useState("");
-    const [enumName, setEnumName] = useState("");
-    const [outputString, setOutputString] = useState([]);
+  const [fileData, setFileData] = useState([]);
+  const [enumBody, setEnumBody] = useState("");
+  const [enumName, setEnumName] = useState("");
+  const [outputString, setOutputString] = useState([]);
 
-    useEffect(() => {
-        let tempStr = [];
-    
-        fileData.forEach((d, i) => {
-            const line = `    ${d.Name} = ${d.ID}${i < fileData.length - 1 ? ',' : ''}`;
-            tempStr.push(line);
-        });
-    
-        setEnumBody(tempStr.join('\n'));
-    }, [fileData]);
+  useEffect(() => {
+    let tempStr = [];
 
-    useEffect(() => {
-       let tempStr = [];
+    fileData.forEach((d, i) => {
+      const line = `    ${d.Name} = ${d.ID}${i < fileData.length - 1 ? ',' : ''}`;
+      tempStr.push(line);
+    });
 
-       tempStr.push(`public enum ${enumName}`);
-       tempStr.push('{');
-       tempStr.push(enumBody);
-       tempStr.push('}');
-       
-       setOutputString(tempStr.join('\n'));
-    }, [enumName]);
+    setEnumBody(tempStr.join('\n'));
+  }, [fileData]);
 
-    const handleFileChosen = (content) => {
-        setFileData(content);
+  useEffect(() => {
+    let tempStr = [];
+
+    tempStr.push(`PUBLIC ENUM ${enumName.toUpperCase()}`);
+    tempStr.push('{');
+    tempStr.push(enumBody.toUpperCase());
+    tempStr.push('}');
+
+    setOutputString(tempStr.join('\n'));
+  }, [enumName]);
+
+  const handleFileChosen = (content) => {
+    setFileData(content);
+  }
+
+  const handleEnumNameChange = (event) => {
+    setEnumName(event.target.value);
+  }
+
+  const handleCopyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
     }
+  }
 
-    const handleEnumNameChange = (event) => {
-        setEnumName(event.target.value);
-    }
-
-    const handleCopyToClipboard = async (text) => {
-        try {
-            await navigator.clipboard.writeText(text);
-        } catch (err) {
-            console.error('Failed to copy text: ', err);
-        }
-    }
-
-    return (
-        <div>
-            <LoadJsonComponent handleFileChosen={handleFileChosen} />
-            <br />
-            <div className="enum-div">
-                <pre>
-                    <code>public enum </code>
-                    <input type="text" value={enumName} onChange={handleEnumNameChange} />
-                    <code>{'\n{\n'}</code>
-                    <code>{enumBody}</code>
-                    <code>{'\n}'}</code>
-                </pre>
-            </div>
-            <br />
-            <Button onClick={() => handleCopyToClipboard(outputString)}>
-                Copy To Clipboard
-            </Button>
-        </div>
-    );
+  return (
+    <div>
+      <LoadJsonComponent handleFileChosen={handleFileChosen} />
+      <br />
+      <div className="enum-div">
+        <pre>
+        <code>public enum </code>
+        <input type="text" value={enumName} onChange={handleEnumNameChange} />
+        <code>{'\n{\n'}</code>
+        <code>{enumBody}</code>
+        <code>{'\n}'}</code>
+        </pre>
+      </div>
+      <br />
+      <Button onClick={() => handleCopyToClipboard(outputString)}>
+        Copy To Clipboard
+      </Button>
+    </div>
+  );
 };
 
 export default EnumServiceComponent;

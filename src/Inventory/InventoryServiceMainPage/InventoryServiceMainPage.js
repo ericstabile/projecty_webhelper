@@ -34,7 +34,7 @@ const InventoryServiceMainPage = () => {
     setInventoryObjectData([]);
     setLastID(0);
   };
-
+  
   const handleSaveToFile = () => {
     const jsonStr = JSON.stringify(inventoryObjectData, null, 2);
     const blob = new Blob([jsonStr], { type: "text/plain;charset=utf-8" });

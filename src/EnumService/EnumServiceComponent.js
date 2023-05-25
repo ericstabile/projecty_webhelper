@@ -23,7 +23,7 @@ const EnumServiceComponent = () => {
   useEffect(() => {
     let tempStr = [];
 
-    tempStr.push(`PUBLIC ENUM ${enumName.toUpperCase()}`);
+    tempStr.push(`public enum ${enumName.toUpperCase()}`);
     tempStr.push('{');
     tempStr.push(enumBody.toUpperCase());
     tempStr.push('}');

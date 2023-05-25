@@ -51,9 +51,16 @@ const AppNavigation = () => {
                 </NavLink>
               </li>
             )}
+            {!showExperimental && (
+              <li className="nav-item">
+                <NavLink to="/enum" className="nav-link" activeClassName="active">
+                  Enum Service
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
-        {/* <div className="form-check form-switch">
+        <div className="form-check form-switch">
           <input
             className="form-check-input"
             type="checkbox"
@@ -63,7 +70,7 @@ const AppNavigation = () => {
           />
           <label className="form-check-label" htmlFor="switchToggle">
           </label>
-        </div> */}
+        </div>
       </div>
     </nav>
   );

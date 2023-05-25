@@ -25,7 +25,7 @@ const InventoryServiceMainPage = () => {
   const handleAddNewItem = () => {
     navigate('/add');
     const newID = inventoryObjectData.length > 0 ? 
-      Math.max(...inventoryObjectData.map(obj => obj.ID)) + 1 
+      Math.max(...inventoryObjectData.map(obj => obj.ID)) 
       : 1;
     setLastID(newID);
   };

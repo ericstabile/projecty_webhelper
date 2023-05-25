@@ -9,6 +9,7 @@ import AddNewInventoryObjectPage from './Inventory/AddNewInventoryObjectPage/Add
 import ExperimentalPage from './Experimental/ExperimentalPage';
 import SpriteSheetServiceComponent from './SpritesheetService/SpriteSheetServiceComponent';
 import { InventoryContext } from './GlobalComponents/Contexts/InventoryContext';
+import EnumServiceComponent from './EnumService/EnumServiceComponent';
 
 const App = () => {
   const [inventoryObjectData, setInventoryObjectData] = useState([]);
@@ -26,7 +27,6 @@ const App = () => {
     const newAssetPathList = [...assetPathList];
   
     assetStrings.forEach((string) => {
-      console.log(string);
       newAssetPathList.push(string);
     });
   
@@ -73,6 +73,10 @@ const App = () => {
             <Route
               path="/sprite"
               element={<SpriteSheetServiceComponent />}
+            />
+            <Route
+              path="/enum"
+              element={<EnumServiceComponent />}
             />
           </Routes>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonComponent";
 import './EnumServiceComponent.css';
 
@@ -6,6 +7,7 @@ const EnumServiceComponent = () => {
     const [fileData, setFileData] = useState([]);
     const [enumBody, setEnumBody] = useState("");
     const [enumName, setEnumName] = useState("");
+    const [outputString, setOutputString] = useState([]);
 
     useEffect(() => {
         let tempStr = [];
@@ -18,12 +20,31 @@ const EnumServiceComponent = () => {
         setEnumBody(tempStr.join('\n'));
     }, [fileData]);
 
+    useEffect(() => {
+       let tempStr = [];
+
+       tempStr.push(`public enum ${enumName}`);
+       tempStr.push('{');
+       tempStr.push(enumBody);
+       tempStr.push('}');
+       
+       setOutputString(tempStr.join('\n'));
+    }, [enumName]);
+
     const handleFileChosen = (content) => {
         setFileData(content);
     }
 
     const handleEnumNameChange = (event) => {
         setEnumName(event.target.value);
+    }
+
+    const handleCopyToClipboard = async (text) => {
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
     }
 
     return (
@@ -39,6 +60,10 @@ const EnumServiceComponent = () => {
                     <code>{'\n}'}</code>
                 </pre>
             </div>
+            <br />
+            <Button onClick={() => handleCopyToClipboard(outputString)}>
+                Copy To Clipboard
+            </Button>
         </div>
     );
 };

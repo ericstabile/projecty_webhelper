@@ -2,18 +2,12 @@ import React, { useState } from 'react';
 import { InventoryContext } from '../Contexts/InventoryContext';
 
 export const InventoryProvider = ({ children }) => {
-  const [inventoryObjectData, setInventoryObjectData] = useState([]);
   const [lastID, setLastID] = useState(0);
-  const [assetPathList, setAssetPathList] = useState([]);
   
   const value = 
   { 
-    inventoryObjectData
-    , setInventoryObjectData
-    , lastID
+    lastID
     , setLastID
-    , assetPathList
-    , setAssetPathList
   };
 
   return (

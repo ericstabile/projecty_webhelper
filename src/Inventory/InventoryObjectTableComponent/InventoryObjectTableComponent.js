@@ -36,7 +36,7 @@
     };
 
     return (
-      <Table striped bordered hover className="table-container">
+      <Table bordered hover className="table-container">
         <thead>
           <tr>
             <th>ID</th>
@@ -50,9 +50,14 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+          <tbody>
           {tableData.map((item, index) => (
-            <tr key={index}>
+            <tr 
+              key={index}
+              style={{
+                backgroundColor: item.IsIndividualSprite ? 'grey' : 'white', // Change these colors to suit your needs.
+              }}
+            >
               {editing[index] ? (
                 <EditInventoryObjectRow
                   item={item}

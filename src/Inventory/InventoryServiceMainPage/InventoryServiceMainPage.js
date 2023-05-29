@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoadJsonComponent from '../../GlobalComponents/LoadJsonComponent/LoadJsonComponent';
 import InventoryObjectTableComponent from '../InventoryObjectTableComponent/InventoryObjectTableComponent';
 import './InventoryServiceMainPage.css';
-import TopRowComponent from './TopRow/TopRowComponent';
+import TopRowComponent from '../../GlobalComponents/TopRow/TopRowComponent';
+import { AppContext } from '../../GlobalComponents/Contexts/AppContext';
 import { InventoryContext } from '../../GlobalComponents/Contexts/InventoryContext';
 
 const InventoryServiceMainPage = () => {
@@ -14,8 +15,11 @@ const InventoryServiceMainPage = () => {
   const {
     inventoryObjectData,
     setInventoryObjectData,
-    setLastID,
     assetPathList
+  } = useContext(AppContext);
+
+  const {
+    setLastID
   } = useContext(InventoryContext);
   
   const handleFileChosen = (content) => {

@@ -1,22 +1,20 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import { BsBalloon } from "react-icons/bs";
-import CustomAnimatedLabel from '../../GlobalComponents/CustomAnimatedLabel/CustomAnimatedLabel';
-import AddNewInventoryObjectFormComponent from '../AddNewInventoryObjectForm/AddNewInventoryObjectForm';
-import './AddNewInventoryObjectPage.css';
-import { InventoryContext } from '../../GlobalComponents/Contexts/InventoryContext';
+import CustomAnimatedLabel from "../../GlobalComponents/CustomAnimatedLabel/CustomAnimatedLabel";
+import AddNewInventoryObjectFormComponent from "../AddNewInventoryObjectForm/AddNewInventoryObjectForm";
+import "./AddNewInventoryObjectPage.css";
+import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
+import { InventoryContext } from "../../GlobalComponents/Contexts/InventoryContext";
 
 const AddNewInventoryObjectPage = () => {
   const navigate = useNavigate();
 
-  const {
-    inventoryObjectData,
-    setInventoryObjectData,
-    lastID,
-    setLastID,
-    assetPathList
-  } = useContext(InventoryContext);
+  const { inventoryObjectData, setInventoryObjectData, assetPathList } =
+    useContext(AppContext);
+
+  const { lastID, setLastID } = useContext(InventoryContext);
 
   const handleAddItem = (item) => {
     const newItem = { ...item, ID: lastID + 1 };
@@ -28,10 +26,13 @@ const AddNewInventoryObjectPage = () => {
   return (
     <div className="main-inventory-container">
       <div className="header-row">
-        <Button variant="danger" onClick={() => navigate('/inventory')} className="custom-button">
+        <Button
+          variant="danger"
+          onClick={() => navigate("/inventory")}
+          className="custom-button"
+        >
           <BsBalloon />
         </Button>
-        
         <CustomAnimatedLabel text="Add New Item" className="custom-label" />
       </div>
       <AddNewInventoryObjectFormComponent
@@ -41,6 +42,6 @@ const AddNewInventoryObjectPage = () => {
       />
     </div>
   );
-}
+};
 
 export default AddNewInventoryObjectPage;

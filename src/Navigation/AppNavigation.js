@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import './AppNavigation.css';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import "./AppNavigation.css";
 
 const AppNavigation = () => {
   const [showExperimental, setShowExperimental] = useState(false);
@@ -26,34 +26,66 @@ const AppNavigation = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink exact to="/" className="nav-link" activeClassName="active">
+              <NavLink
+                exact
+                to="/"
+                className="nav-link"
+                activeClassName="active"
+              >
                 Home
               </NavLink>
             </li>
             {showExperimental && (
               <li className="nav-item">
-                <NavLink to="/experimental" className="nav-link" activeClassName="active">
+                <NavLink
+                  to="/experimental"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Experimental
                 </NavLink>
               </li>
             )}
             {!showExperimental && (
               <li className="nav-item">
-                <NavLink to="/inventory" className="nav-link" activeClassName="active">
+                <NavLink
+                  to="/modifierService"
+                  className="nav-link"
+                  activeClassName="active"
+                >
+                  Modifier Service
+                </NavLink>
+              </li>
+            )}
+            {!showExperimental && (
+              <li className="nav-item">
+                <NavLink
+                  to="/inventory"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Inventory Service
                 </NavLink>
               </li>
             )}
             {!showExperimental && (
               <li className="nav-item">
-                <NavLink to="/sprite" className="nav-link" activeClassName="active">
+                <NavLink
+                  to="/sprite"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Sprite Service
                 </NavLink>
               </li>
             )}
             {!showExperimental && (
               <li className="nav-item">
-                <NavLink to="/enum" className="nav-link" activeClassName="active">
+                <NavLink
+                  to="/enum"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Enum Service
                 </NavLink>
               </li>
@@ -68,8 +100,7 @@ const AppNavigation = () => {
             checked={showExperimental}
             onChange={handleSwitchToggle}
           />
-          <label className="form-check-label" htmlFor="switchToggle">
-          </label>
+          <label className="form-check-label" htmlFor="switchToggle"></label>
         </div>
       </div>
     </nav>

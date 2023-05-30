@@ -6,7 +6,7 @@ import FormFieldInput from "./Components/FormFieldInput";
 
 const ModifierFormFields = ({ formFields, handleChange }) => {
   const shouldDisplayField = (config) => {
-    if (config.stateKey === "boolValue" && formFields.isBool) {
+    if (config.stateKey === "BoolValue" && formFields.isBool) {
       return false;
     }
     return true;

@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import ModifierFormFields from "./ModifierFormFields";
 import "./AddModifierPage.css";
 
 const AddModifierPageComponent = ({ onAddItem, initialLastId }) => {
   const [formFields, setFormFields] = useState({
-    id: initialLastId,
-    name: "",
-    description: "",
-    isString: false,
-    stringValue: "",
-    isBool: false,
-    boolValue: false,
-    isInt: false,
-    intVal: 0,
+    ID: initialLastId,
+    Name: "",
+    Description: "",
+    IsString: false,
+    StringValue: "",
+    IsBool: false,
+    BoolValue: false,
+    IsInt: false,
+    IntValue: 0,
   });
 
   const handleChange = (field, value) => {
@@ -29,6 +29,11 @@ const AddModifierPageComponent = ({ onAddItem, initialLastId }) => {
       return updatedFields;
     });
   };
+
+  useEffect(() => {
+    console.log(`AddModifierPageComponent use effect: ${initialLastId}`);
+    console.log(`formFields id: ${formFields.id}`);
+  }, []);
 
   return (
     <div className="form-container">

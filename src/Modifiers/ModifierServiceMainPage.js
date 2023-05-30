@@ -7,12 +7,13 @@ import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonCom
 import "./ModifierServiceMainPage.css";
 import { AppContext } from "../GlobalComponents/Contexts/AppContext";
 import ModifierTableComponent from "./ModifierTableComponent/ModifierTableComponent";
+import { ModifierContext } from "../GlobalComponents/Contexts/ModifierContext";
 
 const ModifierServiceMainPage = () => {
-  const [lastID, setLastID] = useState(0);
   const navigate = useNavigate();
 
   const { modifierData, setModifierData } = useContext(AppContext);
+  const { lastID, setLastID } = useContext(ModifierContext);
 
   const handleFileChosen = (content) => {
     setModifierData(content);
@@ -20,12 +21,6 @@ const ModifierServiceMainPage = () => {
 
   const handleAddNewItem = () => {
     navigate("/addNewModifier");
-    const newID =
-      modifierData.length > 0
-        ? Math.max(...modifierData.map((obj) => obj.ID))
-        : 0;
-
-    setLastID(newID);
   };
 
   const handleResetState = () => {

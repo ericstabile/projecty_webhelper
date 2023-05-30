@@ -13,6 +13,7 @@ import AddModifierPage from "./Modifiers/Add/AddModifierPage";
 import EnumServiceComponent from "./EnumService/EnumServiceComponent";
 import { AppProvider } from "./GlobalComponents/Providers/AppProvider";
 import { InventoryProvider } from "./GlobalComponents/Providers/InventoryProvider";
+import { ModifierProvider } from "./GlobalComponents/Providers/ModifierProvider";
 
 const App = () => {
   return (
@@ -44,9 +45,20 @@ const App = () => {
             <Route path="/enum" element={<EnumServiceComponent />} />
             <Route
               path="/modifierService"
-              element={<ModifierServiceMainPage />}
+              element={
+                <ModifierProvider>
+                  <ModifierServiceMainPage />
+                </ModifierProvider>
+              }
             />
-            <Route path="/addNewModifier" element={<AddModifierPage />} />
+            <Route
+              path="/addNewModifier"
+              element={
+                <ModifierProvider>
+                  <AddModifierPage />
+                </ModifierProvider>
+              }
+            />
           </Routes>
         </div>
       </Router>

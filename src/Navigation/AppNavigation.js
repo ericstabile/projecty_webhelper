@@ -60,6 +60,17 @@ const AppNavigation = () => {
             {!showExperimental && (
               <li className="nav-item">
                 <NavLink
+                  to="/actionService"
+                  className="nav-link"
+                  activeClassName="active"
+                >
+                  Action Service
+                </NavLink>
+              </li>
+            )}
+            {!showExperimental && (
+              <li className="nav-item">
+                <NavLink
                   to="/inventory"
                   className="nav-link"
                   activeClassName="active"

@@ -11,9 +11,11 @@ import SpriteSheetServiceComponent from "./SpritesheetService/SpriteSheetService
 import ModifierServiceMainPage from "./Modifiers/ModifierServiceMainPage";
 import AddModifierPage from "./Modifiers/Add/AddModifierPage";
 import EnumServiceComponent from "./EnumService/EnumServiceComponent";
+import ActionServiceMainPage from "./Actions/ActionServiceMainPage";
 import { AppProvider } from "./GlobalComponents/Providers/AppProvider";
 import { InventoryProvider } from "./GlobalComponents/Providers/InventoryProvider";
 import { ModifierProvider } from "./GlobalComponents/Providers/ModifierProvider";
+import { ActionProvider } from "./GlobalComponents/Providers/ActionProvider";
 
 const App = () => {
   return (
@@ -56,6 +58,16 @@ const App = () => {
               element={
                 <ModifierProvider>
                   <AddModifierPage />
+                </ModifierProvider>
+              }
+            />
+            <Route
+              path="/actionService"
+              element={
+                <ModifierProvider>
+                  <ActionProvider>
+                    <ActionServiceMainPage />
+                  </ActionProvider>
                 </ModifierProvider>
               }
             />

@@ -81,14 +81,16 @@ function ActionDataComponent({ actionData, setActionData }) {
       />
       {filteredActionData.map((action) => (
         <div key={action.ID} className="action">
-          <ExpandButtonComponent
-            actionId={action.ID}
-            isExpanded={expandedActionIDs.includes(action.ID)}
-            handleToggleExpand={handleToggleExpand}
-          />
-          <h2>
-            {action.Name} (ID: {action.ID})
-          </h2>
+          <div className="action-header">
+            <ExpandButtonComponent
+              actionId={action.ID}
+              isExpanded={expandedActionIDs.includes(action.ID)}
+              handleToggleExpand={handleToggleExpand}
+            />
+            <h2>
+              {action.Name} (ID: {action.ID})
+            </h2>
+          </div>
           {expandedActionIDs.includes(action.ID) && (
             <div className="action-details">
               <p>

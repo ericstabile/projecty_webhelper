@@ -2,8 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-.main-container {
-  width: 80%;
+.action-data-main-container {
   margin: auto;
   font-family: "Dancing Script", cursive;
 }
@@ -35,7 +34,7 @@
   padding-top: 20px;
 }
 
-.input-search {
+.action-data-input-search {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;

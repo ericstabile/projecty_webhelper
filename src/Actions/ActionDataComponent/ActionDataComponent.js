@@ -1,6 +1,9 @@
 import React, { useState, useContext } from "react";
 import "./ActionDataComponent.css";
 import EditActionComponent from "./EditActionComponent";
+import ExpandButtonComponent from "./Components/ExpandButton.Component";
+import AddedModifiersComponent from "./Components/AddedModifiers.Component";
+import ModalComponent from "../../GlobalComponents/ModalComponent/ModalComponent";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 
 function ActionDataComponent({ actionData, setActionData }) {
@@ -68,9 +71,9 @@ function ActionDataComponent({ actionData, setActionData }) {
   );
 
   return (
-    <div className="main-container">
+    <div className="action-data-main-container">
       <input
-        className="input-search"
+        className="action-data-input-search"
         type="text"
         placeholder="Search by action name..."
         value={searchTerm}
@@ -78,12 +81,11 @@ function ActionDataComponent({ actionData, setActionData }) {
       />
       {filteredActionData.map((action) => (
         <div key={action.ID} className="action">
-          <button
-            className="action-toggle"
-            onClick={() => handleToggleExpand(action.ID)}
-          >
-            {expandedActionIDs.includes(action.ID) ? "Hide" : "Expand"}
-          </button>
+          <ExpandButtonComponent
+            actionId={action.ID}
+            isExpanded={expandedActionIDs.includes(action.ID)}
+            handleToggleExpand={handleToggleExpand}
+          />
           <h2>
             {action.Name} (ID: {action.ID})
           </h2>
@@ -98,32 +100,10 @@ function ActionDataComponent({ actionData, setActionData }) {
                 {action.Description_Long}
               </p>
               <h3>Modifiers</h3>
-              {action.Modifiers.length > 0 ? (
-                action.Modifiers.map((modifier) => (
-                  <div key={modifier.ID} className="modifier">
-                    <h4>
-                      {modifier.Name} (ID: {modifier.ID})
-                    </h4>
-                    <p>{modifier.Description}</p>
-                    {modifier.IsString && (
-                      <p>String Value: {modifier.StringValue}</p>
-                    )}
-                    {modifier.IsBool && (
-                      <p>Bool Value: {modifier.BoolValue}</p>
-                    )}
-                    {modifier.IsInt && <p>Int Value: {modifier.IntValue}</p>}
-                    <button
-                      onClick={() =>
-                        handleRemoveModifier(action.ID, modifier.ID)
-                      }
-                    >
-                      Remove Modifier
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <p>No Modifiers Added</p>
-              )}
+              <AddedModifiersComponent
+                action={action}
+                handleRemoveModifier={handleRemoveModifier}
+              />
               <button onClick={() => handleEditAction(action)}>Edit</button>
               <div>
                 <h4>Add New Modifier:</h4>
@@ -147,12 +127,17 @@ function ActionDataComponent({ actionData, setActionData }) {
           )}
         </div>
       ))}
-      {selectedActionForEdit && (
-        <EditActionComponent
-          selectedAction={selectedActionForEdit}
-          onSave={handleSaveAction}
-        />
-      )}
+      <ModalComponent
+        isOpen={selectedActionForEdit !== null}
+        onClose={() => setSelectedActionForEdit(null)}
+      >
+        {selectedActionForEdit && (
+          <EditActionComponent
+            selectedAction={selectedActionForEdit}
+            onSave={handleSaveAction}
+          />
+        )}
+      </ModalComponent>
     </div>
   );
 }

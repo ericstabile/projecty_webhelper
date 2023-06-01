@@ -1,0 +1,29 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2em;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+}
+
+@media screen and (max-width: 600px) {
+  .button-glitch,
+  .button-glitch:after {
+    width: 120px;
+    height: 60px;
+    line-height: 62px;
+    font-size: 16px;
+  }
+}

@@ -7,12 +7,11 @@ import TopRowComponent from "../GlobalComponents/TopRow/TopRowComponent";
 import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonComponent";
 import { AppContext } from "../GlobalComponents/Contexts/AppContext";
 import { ActionContext } from "../GlobalComponents/Contexts/ActionContext";
-import ActionTableComponent from "./ActionTableComponent/ActionTableComponent";
 import ActionDataComponent from "./ActionDataComponent/ActionDataComponent";
 
 const ActionServiceMainPage = () => {
   const navigate = useNavigate();
-  const { actionData, setActionData, modifierData } = useContext(AppContext);
+  const { actionData, setActionData } = useContext(AppContext);
   const { lastID, setLastID } = useContext(ActionContext);
   
   const handleFileChosen = (content) => {
@@ -35,7 +34,7 @@ const ActionServiceMainPage = () => {
   }
 
   return (
-    <div className="main-container">
+    <div className="action-service-main-container">
       <TopRowComponent
         handleAddNewItem={handleAddNewAction}
         handleResetState={handleResetState}

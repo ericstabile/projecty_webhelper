@@ -113,7 +113,7 @@ function AddedModifiersComponent({ action, handleRemoveModifier }) {
               </div>
             )}
             {isEditing && selectedModifierID === modifier.ID && (
-              <button onClick={handleSaveModifier}>Save</button>
+              <button className="save-modifier-button" onClick={handleSaveModifier}>Save</button>
             )}
           </div>
         ))

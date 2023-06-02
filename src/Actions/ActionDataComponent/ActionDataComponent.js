@@ -4,6 +4,7 @@ import EditActionComponent from "./EditActionComponent";
 import ExpandButtonComponent from "./Components/ExpandButton.Component";
 import AddedModifiersComponent from "./Components/AddedModifiers.Component";
 import ModalComponent from "../../GlobalComponents/ModalComponent/ModalComponent";
+import AddNewModifierModalComponent from "./Components/AddNewModifierModal.Component";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 import { TbEdit } from "react-icons/tb";
 
@@ -11,6 +12,10 @@ function ActionDataComponent({ actionData, setActionData }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedActionIDs, setExpandedActionIDs] = useState([]);
   const [selectedActionForEdit, setSelectedActionForEdit] = useState(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedActionForAddModifier, setSelectedActionForAddModifier] =
+    useState(null);
+
   const { modifierData } = useContext(AppContext);
 
   const handleSearchChange = (e) => {
@@ -108,29 +113,22 @@ function ActionDataComponent({ actionData, setActionData }) {
                 <strong>Long Description: </strong>
                 {action.Description_Long}
               </p>
-              <h3>Modifiers</h3>
+              <div className="action-modifiers">
+                <h3>Modifiers</h3>
+                <button
+                  className="action-add-modifier-button"
+                  onClick={() => {
+                    setSelectedActionForAddModifier(action); // Set the action here
+                    setIsAddModalOpen(true);
+                  }}
+                >
+                  Add New Modifier
+                </button>
+              </div>
               <AddedModifiersComponent
                 action={action}
                 handleRemoveModifier={handleRemoveModifier}
               />
-              <div>
-                <h4>Add New Modifier:</h4>
-                <select
-                  onChange={(e) => {
-                    const selectedModifier = modifierData.find(
-                      (modifier) => modifier.ID === parseInt(e.target.value)
-                    );
-                    handleAddModifier(action.ID, selectedModifier);
-                  }}
-                >
-                  <option value="">Select a modifier</option>
-                  {modifierData.map((modifier) => (
-                    <option key={modifier.ID} value={modifier.ID}>
-                      {modifier.Name}
-                    </option>
-                  ))}
-                </select>
-              </div>
             </div>
           )}
         </div>
@@ -146,6 +144,13 @@ function ActionDataComponent({ actionData, setActionData }) {
           />
         )}
       </ModalComponent>
+      <AddNewModifierModalComponent
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        modifierData={modifierData}
+        selectedActionForAddModifier={selectedActionForAddModifier}
+        handleAddModifier={handleAddModifier}
+      />
     </div>
   );
 }

@@ -8,7 +8,7 @@ const ModalComponent = ({ children, isOpen, onClose }) => {
   return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="modal-content">
-        <button onClick={onClose}>Close</button>
+        <button className="close-modal-button" onClick={onClose}>Close</button>
         {children}
       </div>
     </div>,

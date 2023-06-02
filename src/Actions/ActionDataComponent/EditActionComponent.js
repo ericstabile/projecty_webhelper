@@ -20,32 +20,38 @@ const EditActionComponent = ({ selectedAction, onSave }) => {
   };
 
   return (
-    <div>
+    <div className="edit-action-div">
       <h2>Edit Action</h2>
-      <label htmlFor="name">Name:</label>
-      <input
-        type="text"
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+      <div className="edit-action-input-field">
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
 
-      <label htmlFor="short-description">Short Description:</label>
-      <input
-        type="text"
-        id="short-description"
-        value={shortDescription}
-        onChange={(e) => setShortDescription(e.target.value)}
-      />
+      <div className="edit-action-input-field">
+        <label htmlFor="short-description">Short Description:</label>
+        <input
+          type="text"
+          id="short-description"
+          value={shortDescription}
+          onChange={(e) => setShortDescription(e.target.value)}
+        />
+      </div>
 
-      <label htmlFor="long-description">Long Description:</label>
-      <textarea
-        id="long-description"
-        value={longDescription}
-        onChange={(e) => setLongDescription(e.target.value)}
-      ></textarea>
+      <div className="edit-action-input-field">
+        <label htmlFor="long-description">Long Description:</label>
+        <textarea
+          id="long-description"
+          value={longDescription}
+          onChange={(e) => setLongDescription(e.target.value)}
+        ></textarea>
+      </div>
 
-      <button onClick={handleSave}>Save</button>
+      <button className="edit-action-input-save-button" onClick={handleSave}>Save</button>
     </div>
   );
 };

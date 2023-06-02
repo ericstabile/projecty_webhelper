@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import NavItem from "./NavItem";
 import "./AppNavigation.css";
 
 const AppNavigation = () => {
@@ -25,82 +25,25 @@ const AppNavigation = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/"
-                className="nav-link"
-                activeClassName="active"
-              >
-                Home
-              </NavLink>
-            </li>
-            {showExperimental && (
-              <li className="nav-item">
-                <NavLink
-                  to="/experimental"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  Experimental
-                </NavLink>
-              </li>
-            )}
-            {!showExperimental && (
-              <li className="nav-item">
-                <NavLink
-                  to="/modifierService"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  Modifier Service
-                </NavLink>
-              </li>
-            )}
-            {!showExperimental && (
-              <li className="nav-item">
-                <NavLink
-                  to="/actionService"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  Action Service
-                </NavLink>
-              </li>
-            )}
-            {!showExperimental && (
-              <li className="nav-item">
-                <NavLink
-                  to="/inventory"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  Inventory Service
-                </NavLink>
-              </li>
-            )}
-            {!showExperimental && (
-              <li className="nav-item">
-                <NavLink
-                  to="/sprite"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  Sprite Service
-                </NavLink>
-              </li>
-            )}
-            {!showExperimental && (
-              <li className="nav-item">
-                <NavLink
-                  to="/enum"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  Enum Service
-                </NavLink>
-              </li>
-            )}
+            <NavItem to="/">Home</NavItem>
+            <NavItem to="/experimental" show={showExperimental}>
+              Experimental
+            </NavItem>
+            <NavItem to="/modifierService" show={!showExperimental}>
+              Modifier Service
+            </NavItem>
+            <NavItem to="/actionService" show={!showExperimental}>
+              Action Service
+            </NavItem>
+            <NavItem to="/inventory" show={!showExperimental}>
+              Inventory Service
+            </NavItem>
+            <NavItem to="/sprite" show={!showExperimental}>
+              Sprite Service
+            </NavItem>
+            <NavItem to="/enum" show={!showExperimental}>
+              Enum Service
+            </NavItem>
           </ul>
         </div>
         <div className="form-check form-switch">

@@ -5,6 +5,7 @@ import ExpandButtonComponent from "./Components/ExpandButton.Component";
 import AddedModifiersComponent from "./Components/AddedModifiers.Component";
 import ModalComponent from "../../GlobalComponents/ModalComponent/ModalComponent";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
+import { TbEdit } from "react-icons/tb";
 
 function ActionDataComponent({ actionData, setActionData }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -87,6 +88,12 @@ function ActionDataComponent({ actionData, setActionData }) {
               isExpanded={expandedActionIDs.includes(action.ID)}
               handleToggleExpand={handleToggleExpand}
             />
+            <button
+              className="action-edit-button"
+              onClick={() => handleEditAction(action)}
+            >
+              <TbEdit />
+            </button>
             <h2>
               {action.Name} (ID: {action.ID})
             </h2>
@@ -106,7 +113,6 @@ function ActionDataComponent({ actionData, setActionData }) {
                 action={action}
                 handleRemoveModifier={handleRemoveModifier}
               />
-              <button onClick={() => handleEditAction(action)}>Edit</button>
               <div>
                 <h4>Add New Modifier:</h4>
                 <select

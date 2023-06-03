@@ -14,6 +14,7 @@ const FormFieldInput = ({ config, formFields, handleChange }) => {
         onChange={(e) => handleChange(config.stateKey, e.target.value)}
         readOnly={config.readOnly}
         className="form-control"
+        autoComplete="off"
       />
     </Form.Group>
   );

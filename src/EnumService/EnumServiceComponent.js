@@ -13,7 +13,7 @@ const EnumServiceComponent = () => {
     let tempStr = [];
 
     fileData.forEach((d, i) => {
-      const formattedName = d.Name.toLowerCase().replace(/\s+/g, "_");
+      const formattedName = d.Name.toUpperCase().replace(/\s+/g, "_");
       const line = `    ${formattedName} = ${d.ID}${
         i < fileData.length - 1 ? "," : ""
       }`;

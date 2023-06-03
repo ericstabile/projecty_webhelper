@@ -1,12 +1,10 @@
 import React, { useState, useContext } from "react";
-import "./ActionDataComponent.css";
-import ExpandButtonComponent from "./Components/ExpandButton.Component";
-import AddedModifiersComponent from "./Components/AddedModifiers.Component";
-import ModalComponent from "../../GlobalComponents/ModalComponent/ModalComponent";
-import AddNewModifierModalComponent from "./Components/AddNewModifierModal.Component";
+import ExpandButton from "./ExpandButton";
+import AddedModifiers from "./AddedModifiers";
+import AddNewModifierModal from "../Modals/AddNewModifierModal";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 import { TbEdit } from "react-icons/tb";
-import AddEditAction from "./AddEditAction";
+import EditActionModal from "../Modals/EditActionModal";
 
 function ActionDataComponent({ actionData, setActionData }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -88,7 +86,7 @@ function ActionDataComponent({ actionData, setActionData }) {
       {filteredActionData.map((action) => (
         <div key={action.ID} className="action">
           <div className="action-header">
-            <ExpandButtonComponent
+            <ExpandButton
               actionId={action.ID}
               isExpanded={expandedActionIDs.includes(action.ID)}
               handleToggleExpand={handleToggleExpand}
@@ -125,7 +123,7 @@ function ActionDataComponent({ actionData, setActionData }) {
                   Add New Modifier
                 </button>
               </div>
-              <AddedModifiersComponent
+              <AddedModifiers
                 action={action}
                 handleRemoveModifier={handleRemoveModifier}
               />
@@ -133,26 +131,26 @@ function ActionDataComponent({ actionData, setActionData }) {
           )}
         </div>
       ))}
-      <ModalComponent
-        isOpen={selectedActionForEdit !== null}
-        onClose={() => setSelectedActionForEdit(null)}
-      >
-        {selectedActionForEdit && (
-          <AddEditAction
-            id={0}
-            selectedAction={selectedActionForEdit}
-            isEdit={true}
-            onSave={handleSaveAction}
-          />
-        )}
-      </ModalComponent>
-      <AddNewModifierModalComponent
-        isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
-        modifierData={modifierData}
-        selectedActionForAddModifier={selectedActionForAddModifier}
-        handleAddModifier={handleAddModifier}
-      />
+
+      {selectedActionForEdit && (
+        <EditActionModal
+          id={selectedActionForEdit.ID}
+          isOpen={true}
+          selectedAction={selectedActionForEdit}
+          setSelectedAction={setSelectedActionForEdit}
+          handleSaveAction={handleSaveAction}
+        />
+      )}
+
+      {isAddModalOpen && (
+        <AddNewModifierModal
+          isOpen={true}
+          onClose={() => setIsAddModalOpen(false)}
+          modifierData={modifierData}
+          selectedActionForAddModifier={selectedActionForAddModifier}
+          handleAddModifier={handleAddModifier}
+        />
+      )}
     </div>
   );
 }

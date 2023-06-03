@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { saveAs } from "file-saver";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,8 +7,8 @@ import TopRowComponent from "../GlobalComponents/TopRow/TopRowComponent";
 import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonComponent";
 import { AppContext } from "../GlobalComponents/Contexts/AppContext";
 import { ActionContext } from "../GlobalComponents/Contexts/ActionContext";
-import ActionDataComponent from "./ActionDataComponent/ActionDataComponent";
-import AddEditAction from "./ActionDataComponent/AddEditAction";
+import ActionDataComponent from "./Components/ActionDataComponent";
+import AddEditAction from "./Components/AddEditAction";
 import ModalComponent from "../GlobalComponents/ModalComponent/ModalComponent";
 
 const ActionServiceMainPage = () => {
@@ -42,6 +42,10 @@ const ActionServiceMainPage = () => {
     saveAs(blob, "action_data_v0.json");
   };
 
+  useEffect(() => {
+    setLastID(actionData.length);
+  }, [actionData]);
+
   return (
     <div className="action-service-main-container">
       <TopRowComponent
@@ -56,12 +60,18 @@ const ActionServiceMainPage = () => {
         setActionData={setActionData}
       />
 
-      <ModalComponent
-        isOpen={isAddingAction === true}
-        onClose={() => setIsAddingAction(false)}
-      >
-        <AddEditAction id={lastID} isEdit={false} onSave={handleAddNewAction} />
-      </ModalComponent>
+      {isAddingAction && (
+        <ModalComponent
+          isOpen={true}
+          onClose={() => setIsAddingAction(false)}
+        >
+          <AddEditAction
+            id={lastID}
+            isEdit={false}
+            onSave={handleAddNewAction}
+          />
+        </ModalComponent>
+      )}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ButtonGlitch from "../../../GlobalComponents/ButtonGlitch/ButtonGlitch";
+import ButtonGlitch from "../../GlobalComponents/ButtonGlitch/ButtonGlitch";
 
-function ExpandButtonComponent({ actionId, isExpanded, handleToggleExpand }) {
+function ExpandButton({ actionId, isExpanded, handleToggleExpand }) {
   const [id, setId] = useState(actionId);
   const [buttonText, setButtonText] = useState("Expand");
   const [expanded, setExpanded] = useState(isExpanded);
@@ -18,7 +18,7 @@ function ExpandButtonComponent({ actionId, isExpanded, handleToggleExpand }) {
 
   useEffect(() => {
     setButtonText("Expand");
-  }, [])
+  }, []);
 
   return (
     <>
@@ -31,4 +31,4 @@ function ExpandButtonComponent({ actionId, isExpanded, handleToggleExpand }) {
   );
 }
 
-export default ExpandButtonComponent;
+export default ExpandButton;

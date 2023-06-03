@@ -8,16 +8,20 @@ const AddEditAction = ({ id, action, isEdit, onSave }) => {
   const [tempName, setTempName] = useState("");
   const [tempShortDesc, setTempShortDesc] = useState("");
   const [tempLongDesc, setTempLongDesc] = useState("");
+  const [initialDataSet, setInitialDataSet] = useState(true);
 
   useEffect(() => {
     if (selectedAction === null || selectedAction === undefined) {
       return;
     }
-
-    setTempName(selectedAction.Name);
-    setTempShortDesc(selectedAction.Description_Short);
-    setTempLongDesc(selectedAction.Description_Long);
-  }, []);
+  
+    if (initialDataSet) {
+      setTempName(selectedAction.Name);
+      setTempShortDesc(selectedAction.Description_Short);
+      setTempLongDesc(selectedAction.Description_Long);
+      setInitialDataSet(false);
+    }
+  }, [selectedAction]);
 
   const handleSave = () => {
     if (isEditing) {
@@ -86,7 +90,7 @@ const AddEditAction = ({ id, action, isEdit, onSave }) => {
 
 AddEditAction.propTypes = {
   id: PropTypes.number.isRequired,
-  selectedAction: PropTypes.shape({
+  action: PropTypes.shape({
     Name: PropTypes.string,
     Description_Short: PropTypes.string,
     Description_Long: PropTypes.string,

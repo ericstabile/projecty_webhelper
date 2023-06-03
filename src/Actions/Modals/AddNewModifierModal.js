@@ -1,7 +1,7 @@
 import React from "react";
-import ModalComponent from "../../../GlobalComponents/ModalComponent/ModalComponent";
+import ModalComponent from "../../GlobalComponents/ModalComponent/ModalComponent";
 
-function AddNewModifierModalComponent({
+function AddNewModifierModal({
   isOpen,
   onClose,
   modifierData,
@@ -39,4 +39,4 @@ function AddNewModifierModalComponent({
   );
 }
 
-export default AddNewModifierModalComponent;
+export default AddNewModifierModal;

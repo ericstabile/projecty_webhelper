@@ -30,11 +30,6 @@ const AddModifierPageComponent = ({ onAddItem, initialLastId }) => {
     });
   };
 
-  useEffect(() => {
-    console.log(`AddModifierPageComponent use effect: ${initialLastId}`);
-    console.log(`formFields id: ${formFields.id}`);
-  }, []);
-
   return (
     <div className="form-container">
       <Form

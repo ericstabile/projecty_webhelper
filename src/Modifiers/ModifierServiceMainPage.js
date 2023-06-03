@@ -4,7 +4,7 @@ import { saveAs } from "file-saver";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TopRowComponent from "../GlobalComponents/TopRow/TopRowComponent";
 import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonComponent";
-import "./ModifierServiceMainPage.css";
+import "./Styles/ModifierServiceMainPage.css";
 import { AppContext } from "../GlobalComponents/Contexts/AppContext";
 import ModifierTableComponent from "./ModifierTableComponent/ModifierTableComponent";
 import { ModifierContext } from "../GlobalComponents/Contexts/ModifierContext";

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonComponent";
-import './EnumServiceComponent.css';
+import "./EnumServiceComponent.css";
 
 const EnumServiceComponent = () => {
   const [fileData, setFileData] = useState([]);
@@ -13,39 +13,42 @@ const EnumServiceComponent = () => {
     let tempStr = [];
 
     fileData.forEach((d, i) => {
-      const line = `    ${d.Name} = ${d.ID}${i < fileData.length - 1 ? ',' : ''}`;
+      const formattedName = d.Name.toLowerCase().replace(/\s+/g, "_");
+      const line = `    ${formattedName} = ${d.ID}${
+        i < fileData.length - 1 ? "," : ""
+      }`;
       tempStr.push(line);
     });
 
-    setEnumBody(tempStr.join('\n'));
+    setEnumBody(tempStr.join("\n"));
   }, [fileData]);
-
+  
   useEffect(() => {
     let tempStr = [];
 
     tempStr.push(`public enum ${enumName.toUpperCase()}`);
-    tempStr.push('{');
+    tempStr.push("{");
     tempStr.push(enumBody.toUpperCase());
-    tempStr.push('}');
+    tempStr.push("}");
 
-    setOutputString(tempStr.join('\n'));
+    setOutputString(tempStr.join("\n"));
   }, [enumName]);
 
   const handleFileChosen = (content) => {
     setFileData(content);
-  }
+  };
 
   const handleEnumNameChange = (event) => {
     setEnumName(event.target.value);
-  }
+  };
 
   const handleCopyToClipboard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
     } catch (err) {
-      console.error('Failed to copy text: ', err);
+      console.error("Failed to copy text: ", err);
     }
-  }
+  };
 
   return (
     <div>
@@ -53,11 +56,11 @@ const EnumServiceComponent = () => {
       <br />
       <div className="enum-div">
         <pre>
-        <code>public enum </code>
-        <input type="text" value={enumName} onChange={handleEnumNameChange} />
-        <code>{'\n{\n'}</code>
-        <code>{enumBody}</code>
-        <code>{'\n}'}</code>
+          <code>public enum </code>
+          <input type="text" value={enumName} onChange={handleEnumNameChange} />
+          <code>{"\n{\n"}</code>
+          <code>{enumBody}</code>
+          <code>{"\n}"}</code>
         </pre>
       </div>
       <br />

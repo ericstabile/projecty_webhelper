@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 
-const ViewModifierRow = ({ item, index, toggleEdit }) => (
+const ModifierTableRow = ({ item, index, toggleEdit }) => (
   <>
     <td>{item.ID}</td>
     <td>{item.Name}</td>
@@ -17,4 +17,4 @@ const ViewModifierRow = ({ item, index, toggleEdit }) => (
   </>
 );
 
-export default ViewModifierRow;
+export default ModifierTableRow;

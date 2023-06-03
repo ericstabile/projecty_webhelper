@@ -1,4 +1,4 @@
-.main-container {
+.modifier-main-container {
   width: 100%;
   max-width: 1700px;
   background-color: white;
@@ -8,4 +8,28 @@
   margin: 10px;
   height: 700px;
   overflow-y: auto;
+}
+
+.add-edit-modifier-input-field {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid white;
+  border-radius: 8px;
+  background-color: #000000;
+  color: #00ff00;
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+}
+
+.add-edit-modifier-save-button {
+  margin-top: 10px;
+  padding: 10px;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px 1px rgba(255, 0, 0, 0.3),
+    -3px -3px 10px 1px rgba(255, 0, 0, 0.3);
 }

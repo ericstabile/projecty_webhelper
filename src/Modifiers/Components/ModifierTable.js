@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-import EditModifierRow from "./ModifierTableRow/EditModifierRow";
-import ViewModifierRow from "./ModifierTableRow/ViewModifierRow";
+import ModifierTableRow from "./ModifierTableRow";
 
 const ModifierTableComponent = ({ modifierData, setModifierData }) => {
   const [editing, setEditing] = useState([]);
@@ -75,20 +74,11 @@ const ModifierTableComponent = ({ modifierData, setModifierData }) => {
                 : "LightSteelBlue",
             }}
           >
-            {editing[index] ? (
-              <EditModifierRow
-                item={item}
-                index={index}
-                saveEdit={saveEdit}
-                toggleEdit={toggleEdit}
-              />
-            ) : (
-              <ViewModifierRow
-                item={item}
-                index={index}
-                toggleEdit={toggleEdit}
-              />
-            )}
+            <ModifierTableRow
+              item={item}
+              index={index}
+              toggleEdit={toggleEdit}
+            />
           </tr>
         ))}
       </tbody>

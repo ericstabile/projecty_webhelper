@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./ModalComponent.css";
 import { RiCloseFill } from "react-icons/ri";
@@ -10,6 +10,10 @@ const ModalComponent = ({ children, isOpen, onClose }) => {
     setRenderModal(false);
     onClose();
   };
+
+  useEffect(() => {
+    setRenderModal(isOpen);
+  }, [isOpen])
 
   if (!renderModal) return null;
 

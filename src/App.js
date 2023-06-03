@@ -54,14 +54,6 @@ const App = () => {
               }
             />
             <Route
-              path="/addNewModifier"
-              element={
-                <ModifierProvider>
-                  <AddModifierPage />
-                </ModifierProvider>
-              }
-            />
-            <Route
               path="/actionService"
               element={
                 <ModifierProvider>

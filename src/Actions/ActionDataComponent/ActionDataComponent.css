@@ -163,25 +163,25 @@
   font-weight: normal;
 }
 
-.edit-action-div {
+.add-edit-main-container {
   margin:0;
 }
 
-.edit-action-div h2 {
+.add-edit-main-container h2 {
   text-align:center;
 }
 
-.edit-action-input-field {
+.add-edit-action-input-field {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
-.edit-action-input-field label {
+.add-edit-action-input-field label {
   margin-bottom: 5px;
 }
 
-.edit-action-input-field input {
+.add-edit-action-input-field input {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
@@ -192,7 +192,7 @@
   font-size: 16px;
 }
 
-.edit-action-input-field textarea {
+.add-edit-action-input-field textarea {
   width: 100%;
   height: 25%;
   padding: 12px;
@@ -200,11 +200,11 @@
   border: none;
   border-radius: 8px;
   background-color: #f5f5f5;
-  color: #333;
+  color: #9e5454;
   font-size: 16px;
 }
 
-.edit-action-input-save-button {
+.add-edit-action-save-button {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;

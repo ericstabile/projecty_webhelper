@@ -15,7 +15,6 @@ const AddModifierPage = () => {
   const { lastID, setLastID } = useContext(ModifierContext);
 
   const handleAddItem = (item) => {
-    console.log(item);
     const newItem = { ...item, ID: lastID + 1 };
     setModifierData([...modifierData, newItem]);
     setLastID(lastID + 1);

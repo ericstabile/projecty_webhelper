@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import "./ActionDataComponent.css";
-import EditActionComponent from "./EditActionComponent";
 import ExpandButtonComponent from "./Components/ExpandButton.Component";
 import AddedModifiersComponent from "./Components/AddedModifiers.Component";
 import ModalComponent from "../../GlobalComponents/ModalComponent/ModalComponent";
 import AddNewModifierModalComponent from "./Components/AddNewModifierModal.Component";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 import { TbEdit } from "react-icons/tb";
+import AddEditAction from "./AddEditAction";
 
 function ActionDataComponent({ actionData, setActionData }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -118,7 +118,7 @@ function ActionDataComponent({ actionData, setActionData }) {
                 <button
                   className="action-add-modifier-button"
                   onClick={() => {
-                    setSelectedActionForAddModifier(action); // Set the action here
+                    setSelectedActionForAddModifier(action);
                     setIsAddModalOpen(true);
                   }}
                 >
@@ -138,8 +138,10 @@ function ActionDataComponent({ actionData, setActionData }) {
         onClose={() => setSelectedActionForEdit(null)}
       >
         {selectedActionForEdit && (
-          <EditActionComponent
+          <AddEditAction
+            id={0}
             selectedAction={selectedActionForEdit}
+            isEdit={true}
             onSave={handleSaveAction}
           />
         )}

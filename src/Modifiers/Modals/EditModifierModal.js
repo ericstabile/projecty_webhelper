@@ -1,24 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AddEditModifier from "../Components/AddEditModifier";
 import ModalComponent from "../../GlobalComponents/ModalComponent/ModalComponent";
 
 function EditModifierModal({
-  id,
+  editId,
   isOpen,
   selectedModifier,
-  setSelectedModifier,
   handleSaveAction,
 }) {
+  const [id, setId] = useState(editId);
+  const [modifier, setModifier] = useState(selectedModifier);
+
+  const handleClose = () => {
+    handleSaveAction(null);
+  };
+
   const handleSave = (editedModifier) => {
-    setSelectedModifier(editedModifier);
     handleSaveAction(editedModifier);
   };
 
+  useEffect(() => {
+    setId(editId);
+  }, [editId]);
+
+  useEffect(() => {
+    setModifier(selectedModifier);
+  }, [selectedModifier]);
+
   return (
-    <ModalComponent isOpen={isOpen} onClose={() => setSelectedModifier(null)}>
+    <ModalComponent isOpen={isOpen} onClose={handleClose}>
       <AddEditModifier
         id={id}
-        modifier={selectedModifier}
+        modifier={modifier}
         isEdit={true}
         onSave={handleSave}
       />

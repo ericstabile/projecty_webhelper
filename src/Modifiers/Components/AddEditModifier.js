@@ -1,25 +1,39 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 
 const AddEditModifier = ({ id, modifier, isEdit, onSave }) => {
   const [currentId, setCurrentId] = useState(id);
   const [isEditing, setIsEditing] = useState(isEdit);
 
-  const [tempModifier, setTempModifier] = useState(
-    {
-      Name: "",
-      Description: "",
-      IsString: false,
-      StringValue: "",
-      IsBool: false,
-      BoolValue: false,
-      IsInt: false,
-      IntValue: 0,
-    });
+  const [tempModifier, setTempModifier] = useState({
+    Name: "",
+    Description: "",
+    IsString: false,
+    StringValue: "",
+    IsBool: false,
+    BoolValue: false,
+    IsInt: false,
+    IntValue: 0,
+  });
+
+  useEffect(() => {
+    setCurrentId(id);
+  }, [id]);
 
   useEffect(() => {
     if (modifier !== null && modifier !== undefined) {
       setTempModifier(modifier);
+    } else {
+      setTempModifier({
+        Name: "",
+        Description: "",
+        IsString: false,
+        StringValue: "",
+        IsBool: false,
+        BoolValue: false,
+        IsInt: false,
+        IntValue: 0,
+        ...modifier,
+      });
     }
   }, [modifier]);
 
@@ -32,11 +46,40 @@ const AddEditModifier = ({ id, modifier, isEdit, onSave }) => {
   };
 
   const handleChange = (e) => {
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-    setTempModifier({
-      ...tempModifier,
-      [e.target.name]: value
-    });
+    const targetId = e.target.id;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
+    if (targetId === "IsString" && value) {
+      setTempModifier({
+        ...tempModifier,
+        IsString: value,
+        IsBool: false,
+        IsInt: false,
+        [e.target.name]: value,
+      });
+    } else if (targetId === "IsBool" && value) {
+      setTempModifier({
+        ...tempModifier,
+        IsBool: value,
+        IsString: false,
+        IsInt: false,
+        [e.target.name]: value,
+      });
+    } else if (targetId === "IsInt" && value) {
+      setTempModifier({
+        ...tempModifier,
+        IsInt: value,
+        IsString: false,
+        IsBool: false,
+        [e.target.name]: value,
+      });
+    } else {
+      setTempModifier({
+        ...tempModifier,
+        [e.target.name]: value,
+      });
+    }
   };
 
   return (
@@ -136,7 +179,12 @@ const AddEditModifier = ({ id, modifier, isEdit, onSave }) => {
             name="IntValue"
             value={tempModifier.IntValue}
             autoComplete="off"
-            onChange={(e) => handleChange({ ...e, target: { ...e.target, value: Number(e.target.value) } })}
+            onChange={(e) =>
+              handleChange({
+                ...e,
+                target: { ...e.target, value: Number(e.target.value) },
+              })
+            }
           />
         </div>
       )}
@@ -146,22 +194,6 @@ const AddEditModifier = ({ id, modifier, isEdit, onSave }) => {
       </button>
     </div>
   );
-};
-
-AddEditModifier.propTypes = {
-  id: PropTypes.number.isRequired,
-  modifier: PropTypes.shape({
-    Name: PropTypes.string,
-    Description: PropTypes.string,
-    IsString: PropTypes.bool,
-    StringValue: PropTypes.string,
-    IsBool: PropTypes.bool,
-    BoolValue: PropTypes.bool,
-    IsInt: PropTypes.bool,
-    IntValue: PropTypes.number,
-  }),
-  isEdit: PropTypes.bool.isRequired,
-  onSave: PropTypes.func.isRequired,
 };
 
 export default AddEditModifier;

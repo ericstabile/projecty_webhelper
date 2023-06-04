@@ -2,48 +2,15 @@ import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import ModifierTableRow from "./ModifierTableRow";
 
-const ModifierTableComponent = ({ modifierData, setModifierData }) => {
-  const [editing, setEditing] = useState([]);
+const ModifierTableComponent = ({ modifierData, setModifierToEdit }) => {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    setEditing(modifierData.map(() => false));
     setTableData(modifierData);
   }, [modifierData]);
 
-  const toggleEdit = (index) => {
-    const newEditing = [...editing];
-    newEditing[index] = !newEditing[index];
-    setEditing(newEditing);
-  };
-
-  const saveEdit = (
-    index,
-    id,
-    name,
-    description,
-    isString,
-    stringVal,
-    isBool,
-    boolVal,
-    isInt,
-    intVal
-  ) => {
-    const newData = [...tableData];
-    newData[index] = {
-      ID: id,
-      Name: name,
-      Description: description,
-      IsString: isString,
-      StringValue: stringVal,
-      IsBool: isBool,
-      BoolValue: boolVal,
-      IsInt: isInt,
-      IntValue: intVal,
-    };
-
-    setModifierData(newData);
-    toggleEdit(index);
+  const toggleEdit = (item) => {
+    setModifierToEdit(item);
   };
 
   return (

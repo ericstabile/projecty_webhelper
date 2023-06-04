@@ -9,10 +9,12 @@ import { AppContext } from "../GlobalComponents/Contexts/AppContext";
 import ModifierTable from "./Components/ModifierTable";
 import { ModifierContext } from "../GlobalComponents/Contexts/ModifierContext";
 import AddModifierModal from "./Modals/AddModifierModal";
+import EditModifierModal from "./Modals/EditModifierModal";
 
 const ModifierServiceMainPage = () => {
   const navigate = useNavigate();
   const [isAddingModifier, setIsAddingModifier] = useState(false);
+  const [modifierToEdit, setModifierToEdit] = useState([]);
 
   const { modifierData, setModifierData } = useContext(AppContext);
   const { lastID, setLastID } = useContext(ModifierContext);
@@ -25,8 +27,21 @@ const ModifierServiceMainPage = () => {
     setIsAddingModifier(true);
   };
 
-  const handleAddNewItem = () => {
+  const handleAddNewItem = (newModifier) => {
+    setModifierData([...modifierData, newModifier]);
     setIsAddingModifier(false);
+  };
+
+  const handleEditModifier = (editedModifier) => {
+    if (editedModifier !== null) {
+      const updatedModifierData = modifierData.map((modifier) =>
+        modifier.ID === editedModifier.ID ? editedModifier : modifier
+      );
+
+      setModifierData(updatedModifierData);
+    }
+
+    setModifierToEdit(null);
   };
 
   const handleResetState = () => {
@@ -39,6 +54,10 @@ const ModifierServiceMainPage = () => {
     const blob = new Blob([jsonStr], { type: "text/plain;charset=utf-8" });
     saveAs(blob, "modifier_data_v0.json");
   };
+
+  useEffect(() => {
+    setModifierToEdit(null);
+  }, []);
 
   useEffect(() => {
     if (modifierData) {
@@ -59,15 +78,19 @@ const ModifierServiceMainPage = () => {
       <LoadJsonComponent handleFileChosen={handleFileChosen} />
       <ModifierTable
         modifierData={modifierData || []}
-        setModifierData={setModifierData}
+        setModifierToEdit={setModifierToEdit}
       />
 
       <AddModifierModal
         id={lastID}
         isOpen={isAddingModifier}
         setIsOpen={setIsAddingModifier}
-        setSelectedModifier={setModifierData}
         handleSaveAction={handleAddNewItem}
+      />
+      <EditModifierModal
+        isOpen={modifierToEdit !== null && modifierToEdit !== undefined}
+        selectedModifier={modifierToEdit}
+        handleSaveAction={handleEditModifier}
       />
     </div>
   );

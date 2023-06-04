@@ -3,14 +3,33 @@
   max-width: 1700px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.2);
   padding: 20px;
   margin: 10px;
   height: 700px;
   overflow-y: auto;
 }
 
+.add-edit-modifier-main-container {
+  margin: 0;
+}
+
+.add-edit-modifier-main-container h2 {
+  text-align: center;
+}
+
 .add-edit-modifier-input-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.add-edit-modifier-input-field label {
+  margin-bottom: 5px;
+}
+
+.add-edit-modifier-input-field input,
+.add-edit-modifier-input-field textarea {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
@@ -23,13 +42,32 @@
 }
 
 .add-edit-modifier-save-button {
-  margin-top: 10px;
-  padding: 10px;
-  background: none;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px double #00FF00;
+  border-radius: 8px;
+  background-color: #000000;
+  color: #00ff00;
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-edit-modifier-save-button:hover {
+  background-color: #003300;
+  color: #33ff33;
   cursor: pointer;
-  font-weight: bold;
-  border: 1px solid black;
-  border-radius: 15px;
-  box-shadow: 3px 3px 10px 1px rgba(255, 0, 0, 0.3),
-    -3px -3px 10px 1px rgba(255, 0, 0, 0.3);
+}
+
+.add-edit-modifier-input-field input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  background: #000000;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+}
+
+.add-edit-modifier-input-field input[type="checkbox"]:checked {
+  background: #00ff00;
 }

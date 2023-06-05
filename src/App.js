@@ -9,7 +9,6 @@ import AddNewInventoryObjectPage from "./Inventory/AddNewInventoryObjectPage/Add
 import ExperimentalPage from "./Experimental/ExperimentalPage";
 import SpriteSheetServiceComponent from "./SpritesheetService/SpriteSheetServiceComponent";
 import ModifierServiceMainPage from "./Modifiers/ModifierServiceMainPage";
-import AddModifierPage from "./Modifiers/Add/AddModifierPage";
 import EnumServiceComponent from "./EnumService/EnumServiceComponent";
 import ActionServiceMainPage from "./Actions/ActionServiceMainPage";
 import { AppProvider } from "./GlobalComponents/Providers/AppProvider";

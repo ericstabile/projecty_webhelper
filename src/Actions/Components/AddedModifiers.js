@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ModifierItem from './ModifierItem';
+import { ModifierContext } from '../../GlobalComponents/Contexts/ModifierContext';
 
 function AddedModifiers({ action, handleRemoveModifier }) {
   const [selectedAction, setSelectedAction] = useState(action);
   const [selectedModifierID, setSelectedModifierID] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+
+  const { modifierData } = useContext(ModifierContext);
 
   useEffect(() => {
     setSelectedAction(action);
@@ -34,13 +37,21 @@ function AddedModifiers({ action, handleRemoveModifier }) {
     setIsEditing(false);
   };
 
+  const getModifierById = (id) => {
+    if (modifierData !== undefined && modifierData !== null) {
+      const detectedModifier = modifierData.find(modifier => modifier.ID === id);
+      console.log('detected modifier: ', detectedModifier); 
+      return detectedModifier;
+    }
+  }
+
   return (
     <>
       {selectedAction.Modifiers.length > 0 ? (
         selectedAction.Modifiers.map((modifier) => (
           <ModifierItem
             key={modifier.ID}
-            modifier={modifier}
+            modifier={getModifierById(modifier.ID)}
             isEditing={isEditing && selectedModifierID === modifier.ID}
             onEditModifier={handleEditModifier}
             onSaveModifier={handleSaveModifier}

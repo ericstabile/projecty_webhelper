@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer }from "react-toastify";
 import "./Assets/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AppNavigation from "./Navigation/AppNavigation";
@@ -63,6 +64,8 @@ const App = () => {
               }
             />
           </Routes>
+          
+          <ToastContainer />
         </div>
       </Router>
     </AppProvider>

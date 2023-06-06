@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import ModifierItem from './ModifierItem';
-import { ModifierContext } from '../../GlobalComponents/Contexts/ModifierContext';
+import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 
 function AddedModifiers({ action, handleRemoveModifier }) {
   const [selectedAction, setSelectedAction] = useState(action);
   const [selectedModifierID, setSelectedModifierID] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  const { modifierData } = useContext(ModifierContext);
+  const { modifierData } = useContext(AppContext);
 
   useEffect(() => {
     setSelectedAction(action);
@@ -22,10 +22,19 @@ function AddedModifiers({ action, handleRemoveModifier }) {
     setSelectedAction((prevSelectedAction) => {
       const updatedModifiers = prevSelectedAction.Modifiers.map((modifier) => {
         if (modifier.ID === modifierID) {
-          return {
-            ...modifier,
-            ...updatedValues,
-          };
+          const mod = getModifierById(modifier.ID);
+          console.log('mod', mod);
+          if (mod.IsString === true) {
+            return { ID: modifierID, OverrideValue: updatedValues.StringValue };
+          } else if (mod.IsBool === true) {
+            return { ID: modifierID, OverrideValue: updatedValues.BoolValue };
+          } else if (mod.IsInt === true) {
+            return { ID: modifierID, OverrideValue: updatedValues.IntValue };
+          }
+          // return {
+          //   ...modifier,
+          //   ...updatedValues,
+          // };
         }
         return modifier;
       });
@@ -38,10 +47,8 @@ function AddedModifiers({ action, handleRemoveModifier }) {
   };
 
   const getModifierById = (id) => {
-    if (modifierData !== undefined && modifierData !== null) {
-      const detectedModifier = modifierData.find(modifier => modifier.ID === id);
-      console.log('detected modifier: ', detectedModifier); 
-      return detectedModifier;
+    if (id !== undefined && modifierData !== undefined && modifierData !== null) {
+      return modifierData.find(modifier => modifier.ID === id);
     }
   }
 

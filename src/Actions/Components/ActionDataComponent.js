@@ -47,7 +47,7 @@ function ActionDataComponent({ actionData, setActionData }) {
       if (action.ID === actionID) {
         return {
           ...action,
-          Modifiers: [...action.Modifiers, modifier],
+          Modifiers: [...action.Modifiers, { ID: modifier.ID }],
         };
       }
       return action;

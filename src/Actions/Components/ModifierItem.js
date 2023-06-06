@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GiCancel } from "react-icons/gi";
 import { FiEdit } from "react-icons/fi";
 
@@ -9,9 +9,17 @@ function ModifierItem({
   onSaveModifier,
   onRemoveModifier,
 }) {
-  const [tempStringValue, setTempStringValue] = useState(modifier.StringValue);
-  const [tempBoolValue, setTempBoolValue] = useState(modifier.BoolValue);
-  const [tempIntValue, setTempIntValue] = useState(modifier.IntValue);
+  const [tempStringValue, setTempStringValue] = useState("");
+  const [tempBoolValue, setTempBoolValue] = useState(false);
+  const [tempIntValue, setTempIntValue] = useState(0);
+
+  useEffect(() => {
+    if (modifier !== null && modifier !== undefined) {
+      setTempStringValue(modifier.StringValue);
+      setTempBoolValue(modifier.BoolValue);
+      setTempBoolValue(modifier.IntValue);
+    }
+  }, [])
 
   const handleSave = () => {
     onSaveModifier(modifier.ID, {
@@ -38,19 +46,19 @@ function ModifierItem({
         </button>
       </div>
       <h4>
-        {modifier.Name} (ID: {modifier.ID})
+        {modifier?.Name} (ID: {modifier?.ID})
       </h4>
-      <p>{modifier.Description}</p>
+      <p>{modifier?.Description}</p>
       {isEditing ? (
         <>
-          {modifier.IsString && (
+          {modifier?.IsString && (
             <input
               type="text"
               value={tempStringValue}
               onChange={(e) => setTempStringValue(e.target.value)}
             />
           )}
-          {modifier.IsBool && (
+          {modifier?.IsBool && (
             <select
               value={tempBoolValue.toString()}
               onChange={(e) => setTempBoolValue(e.target.value === "true")}
@@ -59,7 +67,7 @@ function ModifierItem({
               <option value={false}>False</option>
             </select>
           )}
-          {modifier.IsInt && (
+          {modifier?.IsInt && (
             <input
               type="number"
               value={tempIntValue}
@@ -72,11 +80,11 @@ function ModifierItem({
         </>
       ) : (
         <>
-          {modifier.IsString && <p>Value: {modifier.StringValue}</p>}
-          {modifier.IsBool && (
+          {modifier?.IsString && <p>Value: {tempStringValue}</p>}
+          {modifier?.IsBool && (
             <p>Value: {modifier.BoolValue ? "True" : "False"}</p>
           )}
-          {modifier.IsInt && <p>Value: {modifier.IntValue}</p>}
+          {modifier?.IsInt && <p>Value: {modifier.IntValue}</p>}
         </>
       )}
     </div>

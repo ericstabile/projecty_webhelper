@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { saveAs } from "file-saver";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ActionServiceMainPage.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import TopRowComponent from "../GlobalComponents/TopRow/TopRowComponent";
 import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonComponent";
 import { AppContext } from "../GlobalComponents/Contexts/AppContext";
@@ -14,7 +16,8 @@ import ModalComponent from "../GlobalComponents/ModalComponent/ModalComponent";
 const ActionServiceMainPage = () => {
   const navigate = useNavigate();
   const [isAddingAction, setIsAddingAction] = useState(false);
-  const { actionData, setActionData } = useContext(AppContext);
+
+  const { actionData, setActionData, modifierData } = useContext(AppContext);
   const { lastID, setLastID } = useContext(ActionContext);
 
   const handleFileChosen = (content) => {
@@ -46,6 +49,24 @@ const ActionServiceMainPage = () => {
     setLastID(actionData.length);
   }, [actionData]);
 
+  useEffect(() => {
+    if (
+      modifierData === null ||
+      modifierData === undefined ||
+      modifierData.length === 0
+    ) {
+      toast.error("Modifier data is null", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }, []);
+
   return (
     <div className="action-service-main-container">
       <TopRowComponent
@@ -61,10 +82,7 @@ const ActionServiceMainPage = () => {
       />
 
       {isAddingAction && (
-        <ModalComponent
-          isOpen={true}
-          onClose={() => setIsAddingAction(false)}
-        >
+        <ModalComponent isOpen={true} onClose={() => setIsAddingAction(false)}>
           <AddEditAction
             id={lastID}
             isEdit={false}

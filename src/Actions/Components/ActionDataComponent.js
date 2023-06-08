@@ -55,6 +55,36 @@ function ActionDataComponent({ actionData, setActionData }) {
     setActionData(updatedActionData);
   };
 
+  const handleUpdateModifier = (actionID, modifierID, overrideValue) => {
+    const updatedActionData = actionData.map((action) => {
+      if (action.ID === actionID) {
+        const updatedModifiers = action.Modifiers.map((modifier) => {
+          if (modifier.ID === modifierID) {
+            return {
+              ...modifier,
+              OverrideValue: overrideValue,
+            };
+          }
+          return modifier;
+        });
+
+        if (!updatedModifiers.find((modifier) => modifier.ID === modifierID)) {
+          updatedModifiers.push({
+            ID: modifierID,
+            OverrideValue: overrideValue,
+          });
+        }
+
+        return {
+          ...action,
+          Modifiers: updatedModifiers,
+        };
+      }
+      return action;
+    });
+    setActionData(updatedActionData);
+  };
+
   const handleRemoveModifier = (actionID, modifierID) => {
     const updatedActionData = actionData.map((action) => {
       if (action.ID === actionID) {
@@ -125,6 +155,7 @@ function ActionDataComponent({ actionData, setActionData }) {
               </div>
               <AddedModifiers
                 action={action}
+                handleUpdateModifier={handleUpdateModifier}
                 handleRemoveModifier={handleRemoveModifier}
               />
             </div>

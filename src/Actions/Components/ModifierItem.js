@@ -1,32 +1,44 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { GiCancel } from "react-icons/gi";
 import { FiEdit } from "react-icons/fi";
 
 function ModifierItem({
   modifier,
+  overrideValue,
   isEditing,
   onEditModifier,
   onSaveModifier,
   onRemoveModifier,
 }) {
-  const [tempStringValue, setTempStringValue] = useState("");
-  const [tempBoolValue, setTempBoolValue] = useState(false);
-  const [tempIntValue, setTempIntValue] = useState(0);
+  const [override, setOverride] = useState(overrideValue);
+  const [tempValues, setTempValues] = useState({
+    StringValue: "",
+    BoolValue: false,
+    IntValue: 0,
+  });
 
   useEffect(() => {
-    if (modifier !== null && modifier !== undefined) {
-      setTempStringValue(modifier.StringValue);
-      setTempBoolValue(modifier.BoolValue);
-      setTempBoolValue(modifier.IntValue);
+    if (modifier) {
+      setTempValues({
+        StringValue: modifier.StringValue,
+        BoolValue: modifier.BoolValue,
+        IntValue: modifier.IntValue,
+      });
     }
-  }, [])
+  }, [modifier]);
+
+  const handleInputChange = (type, value) => {
+    setTempValues({
+      ...tempValues,
+      [type]: value,
+    });
+
+    setOverride(null);
+  };
 
   const handleSave = () => {
-    onSaveModifier(modifier.ID, {
-      StringValue: tempStringValue,
-      BoolValue: tempBoolValue,
-      IntValue: tempIntValue,
-    });
+    onSaveModifier(modifier.ID, tempValues);
   };
 
   return (
@@ -45,50 +57,93 @@ function ModifierItem({
           <GiCancel />
         </button>
       </div>
-      <h4>
-        {modifier?.Name} (ID: {modifier?.ID})
-      </h4>
-      <p>{modifier?.Description}</p>
-      {isEditing ? (
+      {modifier && (
         <>
-          {modifier?.IsString && (
-            <input
-              type="text"
-              value={tempStringValue}
-              onChange={(e) => setTempStringValue(e.target.value)}
-            />
+          <h4>
+            {modifier.Name} (ID: {modifier.ID})
+          </h4>
+          <p>{modifier.Description}</p>
+          {isEditing ? (
+            <>
+              {modifier.IsString && (
+                <input
+                  type="text"
+                  value={
+                    override !== null && override !== undefined
+                      ? override
+                      : tempValues.StringValue
+                  }
+                  onChange={(e) =>
+                    handleInputChange("StringValue", e.target.value)
+                  }
+                />
+              )}
+              {modifier.IsBool && (
+                <select
+                  value={
+                    override !== null && override !== undefined
+                      ? override.toString()
+                      : tempValues.BoolValue.toString()
+                  }
+                  onChange={(e) =>
+                    handleInputChange("BoolValue", e.target.value === "true")
+                  }
+                >
+                  <option value={true}>True</option>
+                  <option value={false}>False</option>
+                </select>
+              )}
+              {modifier.IsInt && (
+                <input
+                  type="number"
+                  value={
+                    override !== null && override !== undefined
+                      ? override
+                      : tempValues.IntValue
+                  }
+                  onChange={(e) =>
+                    handleInputChange("IntValue", Number(e.target.value))
+                  }
+                />
+              )}
+              <button className="save-modifier-button" onClick={handleSave}>
+                Save
+              </button>
+            </>
+          ) : (
+            <>
+              {modifier.IsString && (
+                <p>Value: {override || tempValues.StringValue}</p>
+              )}
+              {modifier.IsBool && (
+                <p>
+                  Value:{" "}
+                  {override !== null && override !== undefined
+                    ? override
+                      ? "True"
+                      : "False"
+                    : tempValues.BoolValue
+                    ? "True"
+                    : "False"}
+                </p>
+              )}
+              {modifier.IsInt && (
+                <p>Value: {override || tempValues.IntValue}</p>
+              )}
+            </>
           )}
-          {modifier?.IsBool && (
-            <select
-              value={tempBoolValue.toString()}
-              onChange={(e) => setTempBoolValue(e.target.value === "true")}
-            >
-              <option value={true}>True</option>
-              <option value={false}>False</option>
-            </select>
-          )}
-          {modifier?.IsInt && (
-            <input
-              type="number"
-              value={tempIntValue}
-              onChange={(e) => setTempIntValue(Number(e.target.value))}
-            />
-          )}
-          <button className="save-modifier-button" onClick={handleSave}>
-            Save
-          </button>
-        </>
-      ) : (
-        <>
-          {modifier?.IsString && <p>Value: {tempStringValue}</p>}
-          {modifier?.IsBool && (
-            <p>Value: {modifier.BoolValue ? "True" : "False"}</p>
-          )}
-          {modifier?.IsInt && <p>Value: {modifier.IntValue}</p>}
         </>
       )}
     </div>
   );
 }
+
+ModifierItem.propTypes = {
+  modifier: PropTypes.object.isRequired,
+  isEditing: PropTypes.bool.isRequired,
+  onEditModifier: PropTypes.func.isRequired,
+  onSaveModifier: PropTypes.func.isRequired,
+  onRemoveModifier: PropTypes.func.isRequired,
+};
 
 export default ModifierItem;

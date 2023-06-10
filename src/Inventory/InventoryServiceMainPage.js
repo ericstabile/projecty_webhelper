@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { saveAs } from "file-saver";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./ActionServiceMainPage.css";
+import "./Styles/InventoryServiceMainPage.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TopRowComponent from "../GlobalComponents/TopRow/TopRowComponent";
@@ -13,7 +13,7 @@ import ModalComponent from "../GlobalComponents/ModalComponent/ModalComponent";
 
 const InventoryServiceMainPage = () => {
   const navigate = useNavigate();
-
+  const [isAddingObject, setIsAddingObject] = useState(false);
   const { actionData, modifierData, inventoryData, setInventoryData } =
     useContext(AppContext);
   const { lastID, setLastID } = useContext(InventoryContext);
@@ -21,22 +21,28 @@ const InventoryServiceMainPage = () => {
   const isEmpty = (data) =>
     data === null || data === undefined || data.length === 0;
 
-  const createToastMessage = (modifierData, actionData) => {
-    let toastMessage = "";
-    if (isEmpty(modifierData)) {
-      toastMessage += "Modifier Data is missing\n";
-    }
-    if (isEmpty(actionData)) {
-      toastMessage += "Action Data is missing\n";
-    }
-    return toastMessage;
+  const handleAddNewItem = (inventoryObject) => {
+    setInventoryData([...inventoryData, inventoryObject]);
+    setLastID(lastID + 1);
+    setIsAddingObject(false);
   };
 
-  useEffect(() => {
-    const toastMessage = createToastMessage(modifierData, actionData);
+  const handleResetState = () => {
+    setInventoryData([]);
+    setLastID(0);
+  };
 
-    if (toastMessage !== "") {
-      toast.error(toastMessage, {
+  const handleSaveFile = () => {
+    const jsonStr = JSON.stringify(inventoryData, null, 2);
+    const blob = new Blob([jsonStr], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "inventory_object_data_v0.json");
+  };
+
+  const handleFileChosen = () => {};
+
+  const createToastMessage = (data, dataType) => {
+    if (isEmpty(data)) {
+      toast.error(`${dataType} Data is missing`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -46,6 +52,15 @@ const InventoryServiceMainPage = () => {
         progress: undefined,
       });
     }
+  };
+
+  useEffect(() => {
+    setLastID(inventoryData.length);
+  }, [inventoryData])
+
+  useEffect(() => {
+    createToastMessage(modifierData, "Modifier");
+    createToastMessage(actionData, "Action");
   }, []);
 
   return (

@@ -5,7 +5,7 @@ import "./Assets/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AppNavigation from "./Navigation/AppNavigation";
 import HomePage from "./HomePage/HomePage";
-import InventoryServiceMainPage from "./Inventory/InventoryServiceMainPage/InventoryServiceMainPage";
+import InventoryServiceMainPage from "./Inventory/InventoryServiceMainPage";
 import AddNewInventoryObjectPage from "./Inventory/AddNewInventoryObjectPage/AddNewInventoryObjectPage";
 import ExperimentalPage from "./Experimental/ExperimentalPage";
 import SpriteSheetServiceComponent from "./SpritesheetService/SpriteSheetServiceComponent";

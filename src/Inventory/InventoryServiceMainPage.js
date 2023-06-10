@@ -10,6 +10,7 @@ import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonCom
 import { AppContext } from "../GlobalComponents/Contexts/AppContext";
 import { InventoryContext } from "../GlobalComponents/Contexts/InventoryContext";
 import ModalComponent from "../GlobalComponents/ModalComponent/ModalComponent";
+import InventoryDataComponent from "./Components/InventoryDataComponent";
 
 const InventoryServiceMainPage = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const InventoryServiceMainPage = () => {
   const { lastID, setLastID } = useContext(InventoryContext);
 
   const isEmpty = (data) =>
-    data === null || data === undefined || data.length === 0;
+    (data === null || data === undefined) || data.length === 0;
 
   const handleAddNewItem = (inventoryObject) => {
     setInventoryData([...inventoryData, inventoryObject]);
@@ -55,7 +56,11 @@ const InventoryServiceMainPage = () => {
   };
 
   useEffect(() => {
-    setLastID(inventoryData.length);
+    if (inventoryData !== null && inventoryData !== undefined) {
+      setLastID(inventoryData.length);
+    } else {
+      setLastID(0);
+    }
   }, [inventoryData])
 
   useEffect(() => {
@@ -72,6 +77,7 @@ const InventoryServiceMainPage = () => {
         nav={navigate}
       />
       <LoadJsonComponent handleFileChosen={handleFileChosen} />
+      <InventoryDataComponent />
     </div>
   );
 };

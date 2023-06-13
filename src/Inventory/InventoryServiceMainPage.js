@@ -39,7 +39,9 @@ const InventoryServiceMainPage = () => {
     saveAs(blob, "inventory_object_data_v0.json");
   };
 
-  const handleFileChosen = () => {};
+  const handleFileChosen = (content) => {
+    setInventoryData(content);
+  };
 
   const createToastMessage = (data, dataType) => {
     if (isEmpty(data)) {

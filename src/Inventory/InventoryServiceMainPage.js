@@ -15,7 +15,7 @@ import InventoryDataComponent from "./Components/InventoryDataComponent";
 const InventoryServiceMainPage = () => {
   const navigate = useNavigate();
   const [isAddingObject, setIsAddingObject] = useState(false);
-  const { actionData, modifierData, inventoryData, setInventoryData } =
+  const { actionData, modifierData, inventoryObjectData, setInventoryObjectData } =
     useContext(AppContext);
   const { lastID, setLastID } = useContext(InventoryContext);
 
@@ -23,24 +23,24 @@ const InventoryServiceMainPage = () => {
     (data === null || data === undefined) || data.length === 0;
 
   const handleAddNewItem = (inventoryObject) => {
-    setInventoryData([...inventoryData, inventoryObject]);
+    setInventoryObjectData([...inventoryObjectData, inventoryObject]);
     setLastID(lastID + 1);
     setIsAddingObject(false);
   };
 
   const handleResetState = () => {
-    setInventoryData([]);
+    setInventoryObjectData([]);
     setLastID(0);
   };
 
   const handleSaveFile = () => {
-    const jsonStr = JSON.stringify(inventoryData, null, 2);
+    const jsonStr = JSON.stringify(inventoryObjectData, null, 2);
     const blob = new Blob([jsonStr], { type: "text/plain;charset=utf-8" });
     saveAs(blob, "inventory_object_data_v0.json");
   };
 
   const handleFileChosen = (content) => {
-    setInventoryData(content);
+    setInventoryObjectData(content);
   };
 
   const createToastMessage = (data, dataType) => {
@@ -58,12 +58,12 @@ const InventoryServiceMainPage = () => {
   };
 
   useEffect(() => {
-    if (inventoryData !== null && inventoryData !== undefined) {
-      setLastID(inventoryData.length);
+    if (inventoryObjectData !== null && inventoryObjectData !== undefined) {
+      setLastID(inventoryObjectData.length);
     } else {
       setLastID(0);
     }
-  }, [inventoryData])
+  }, [inventoryObjectData])
 
   useEffect(() => {
     createToastMessage(modifierData, "Modifier");

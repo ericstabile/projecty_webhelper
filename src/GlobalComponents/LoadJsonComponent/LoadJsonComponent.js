@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import './LoadJsonComponent.css';
 
-const LoadJsonComponent = ({ handleFileChosen }) => {
+const LoadJsonComponent = ({ handleFileChosen, typeOfFile }) => {
   const fileInputRef = useRef(null);
+  const [fileType, setFileType] = useState(typeOfFile);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -21,11 +22,15 @@ const LoadJsonComponent = ({ handleFileChosen }) => {
     fileInputRef.current.click();
   };
 
+  useEffect(() => {
+    setFileType(typeOfFile);
+  }, [typeOfFile])
+
   return (
     <div className="load-json-container">
       <div className="load-json-content">
         <Form.Group controlId="formFile" className="mb-3">
-          <Form.Label className="load-json-label">Load JSON File:</Form.Label>
+          <Form.Label className="load-json-label">Load {fileType} JSON File:</Form.Label>
           <div className="load-json-input-wrapper">
             <Form.Control
               ref={fileInputRef}

@@ -43,3 +43,17 @@
 .glow {
   animation: glowEffect 2s ease-in-out infinite alternate;
 }
+
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.home-load-json-components {
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 500px;
+}

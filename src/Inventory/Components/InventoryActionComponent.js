@@ -25,20 +25,21 @@ const InventoryActionComponent = ({ action }) => {
 
   useEffect(() => {
     getActionDetails();
-  }, [])
+  }, []);
 
   return (
     <div key={currentAction.ID}>
-      <h4>{currentActionDetails.Name}</h4>
-      <label>
-        ID:
-        <input
-          type="text"
-          name="ID"
-          value={currentAction.ID}
-          // onChange={(e) => handleActionChange(actIndex, e)}
-        />
-      </label>
+      <h4>
+        {currentActionDetails && (
+          <div className="inventory-action-component-container">
+            <span>
+              {currentActionDetails.Name} - (ID: {currentActionDetails.ID})
+            </span>
+            
+            <label>Short Description: {currentActionDetails.Description_Short}</label>
+          </div>
+        )}
+      </h4>
       <h4>Modifier Overrides</h4>
       {action.ModifierOverrides.map((modifier, modIndex) => (
         <InventoryModifierComponent modifier={modifier} />

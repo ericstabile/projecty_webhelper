@@ -33,7 +33,7 @@ const InventoryModifierComponent = ({ modifier }) => {
         <input
           type="text"
           name="ModifierID"
-          value={currentModifier.ModifierID}
+          value={currentModifier.ID}
           // onChange={(e) => handleModifierChange(invIndex, actIndex, modIndex, e)}
         />
       </label>

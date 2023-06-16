@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InventoryActionComponent from "./InventoryActionComponent";
 
 const BaseInventoryComponent = ({
@@ -37,6 +37,10 @@ const BaseInventoryComponent = ({
       )
     );
   };
+
+  useEffect(() => {
+    setCurrentInventoryObject(inventoryObject);
+  }, [inventoryObject]);
 
   return (
     <div key={idx}>
@@ -106,46 +110,7 @@ const BaseInventoryComponent = ({
       </label>
       <h3>Actions</h3>
       {currentInventoryObject.Actions.map((action, actIndex) => (
-        <InventoryActionComponent action={action} />
-        // <div key={actIndex}>
-        //   <h4>Action {actIndex + 1}</h4>
-        //   <label>
-        //     ID:
-        //     <input
-        //       type="text"
-        //       name="ID"
-        //       value={action.ID}
-        //       onChange={(e) => handleActionChange(actIndex, e)}
-        //     />
-        //   </label>
-        //   <h4>Modifier Overrides</h4>
-        //   {action.ModifierOverrides.map((modifier, modIndex) => (
-        //     <div key={modIndex}>
-        //       <label>
-        //         ModifierID:
-        //         <input
-        //           type="text"
-        //           name="ModifierID"
-        //           value={modifier.ModifierID}
-        //           onChange={(e) =>
-        //             handleModifierChange(invIndex, actIndex, modIndex, e)
-        //           }
-        //         />
-        //       </label>
-        //       <label>
-        //         OverrideValue:
-        //         <input
-        //           type="text"
-        //           name="OverrideValue"
-        //           value={modifier.OverrideValue}
-        //           onChange={(e) =>
-        //             handleModifierChange(invIndex, actIndex, modIndex, e)
-        //           }
-        //         />
-        //       </label>
-        //     </div>
-        //   ))}
-        // </div>
+        <InventoryActionComponent key={actIndex} action={action} />
       ))}
     </div>
   );

@@ -5,6 +5,7 @@ import InventoryModifierComponent from "./InventoryModifierComponent";
 const InventoryActionComponent = ({ action }) => {
   const [currentAction, setCurrentAction] = useState(action);
   const [currentActionDetails, setCurrentActionDetails] = useState(null);
+  const [hasModifiers, setHasModifiers] = useState(false);
 
   const { actionData } = useContext(AppContext);
 
@@ -21,10 +22,12 @@ const InventoryActionComponent = ({ action }) => {
   useEffect(() => {
     setCurrentAction(action);
     getActionDetails();
+    setHasModifiers(currentAction.ModifierOverrides && currentAction.ModifierOverrides.length > 0);
   }, [action]);
 
   useEffect(() => {
     getActionDetails();
+    setHasModifiers(currentAction.ModifierOverrides && currentAction.ModifierOverrides.length > 0);
   }, []);
 
   return (
@@ -35,36 +38,18 @@ const InventoryActionComponent = ({ action }) => {
             <span>
               {currentActionDetails.Name} - (ID: {currentActionDetails.ID})
             </span>
-            
-            <label>Short Description: {currentActionDetails.Description_Short}</label>
+
+            <label>
+              Short Description: {currentActionDetails.Description_Short}
+            </label>
           </div>
         )}
       </h4>
       <h4>Modifier Overrides</h4>
-      {action.ModifierOverrides.map((modifier, modIndex) => (
-        <InventoryModifierComponent modifier={modifier} />
-
-        // <div key={modIndex}>
-        //   <label>
-        //     ModifierID:
-        //     <input
-        //       type="text"
-        //       name="ModifierID"
-        //       value={modifier.ModifierID}
-        //       // onChange={(e) => handleModifierChange(invIndex, actIndex, modIndex, e)}
-        //     />
-        //   </label>
-        //   <label>
-        //     OverrideValue:
-        //     <input
-        //       type="text"
-        //       name="OverrideValue"
-        //       value={modifier.OverrideValue}
-        //       // onChange={(e) => handleModifierChange(invIndex, actIndex, modIndex, e)}
-        //     />
-        //   </label>
-        // </div>
-      ))}
+      {hasModifiers &&
+        action.ModifierOverrides.map((modifier, modIndex) => (
+          <InventoryModifierComponent modifier={modifier} />
+        ))}
     </div>
   );
 };

@@ -1,33 +1,34 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
-import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
+import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import FormGroup from "react-bootstrap/FormGroup";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import FormCheck from "react-bootstrap/FormCheck";
-
-const ReadOnlyTextField = ({ controlId, label, value }) => (
-  <FormGroup as={Row} controlId={controlId}>
-    <Form.Label column sm="2">
-      {label}:
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control plaintext readOnly value={value} />
-    </Col>
-  </FormGroup>
-);
+import { 
+  BiArrowToTop,
+  BiArrowToBottom 
+} from "react-icons/bi";
+import {
+  ReadOnlyTextField,
+  ReadOnlyFormCheckField,
+} from "../../GlobalComponents/ReadOnlyFormGroupFields/ReadOnlyFormGroupFieldsComponent";
+import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 
 const InventoryModifierComponent = ({ modifier }) => {
   const [currentModifier, setCurrentModifier] = useState(modifier);
   const [currentModifierData, setCurrentModifierData] = useState(null);
+  const [isModifierExpanded, setIsModifierExpanded] = useState(false);
 
   const { modifierData } = useContext(AppContext);
 
+  const handleExpandClickEvent = () => {
+    setIsModifierExpanded(!isModifierExpanded);
+  };
+
   const getModifierDetails = useCallback(() => {
     if (currentModifier) {
-      const modifierDetails = modifierData.find(m => m.ID === currentModifier.ID);
-      if(modifierDetails){
+      const modifierDetails = modifierData.find(
+        (m) => m.ID === currentModifier.ID
+      );
+      if (modifierDetails) {
         setCurrentModifierData(modifierDetails);
       }
     }
@@ -41,29 +42,64 @@ const InventoryModifierComponent = ({ modifier }) => {
   return (
     <Container key={currentModifier.ID}>
       {currentModifierData && (
-        <div className="inventory-modifier-component-container">
-          <Form>
-            <ReadOnlyTextField controlId="ModifierID" label="Modifier ID" value={currentModifier.ID} />
-            <ReadOnlyTextField label="Modifier Name" value={currentModifierData.Name} />
-            <ReadOnlyTextField controlId="OverrideValue" label="Override Value" value={modifier.OverrideValue} />
-            {currentModifierData.IsString && (
-              <ReadOnlyTextField label="String Value" value={currentModifierData.StringValue} />
+        <>
+          <div className="inventory-modifier-component-container">
+          <div className="button-heading-container"> {/* Added container */}
+              <Button
+                className="inventory-modifier-expand-button"
+                onClick={handleExpandClickEvent}
+              >
+                {isModifierExpanded ? <BiArrowToTop /> : <BiArrowToBottom /> }
+              </Button>
+              <h4>Modifier Overrides</h4>
+            </div>
+            <div className="line"></div>
+            {isModifierExpanded && (
+              <Form>
+                <ReadOnlyTextField
+                  controlId="ModifierID"
+                  label="Modifier ID"
+                  value={currentModifier.ID}
+                />
+                <ReadOnlyTextField
+                  label="Modifier Name"
+                  value={currentModifierData.Name}
+                />
+                <ReadOnlyTextField
+                  label="Modifier Description"
+                  value={currentModifierData.Description}
+                />
+                {currentModifierData.IsString && (
+                  <ReadOnlyTextField
+                    label="String Value"
+                    value={currentModifierData.StringValue}
+                  />
+                )}
+                {currentModifierData.IsBool && (
+                  <ReadOnlyFormCheckField
+                    label="Bool Value"
+                    value={currentModifierData.BoolValue}
+                  />
+                )}
+                {currentModifierData.IsInt && (
+                  <ReadOnlyTextField
+                    label="Int Value"
+                    value={currentModifierData.IntValue}
+                  />
+                )}
+
+                {modifier.OverrideValue !== null &&
+                  modifier.OverrideValue !== undefined && (
+                    <ReadOnlyTextField
+                      controlId="OverrideValue"
+                      label="Override Value"
+                      value={modifier.OverrideValue}
+                    />
+                  )}
+              </Form>
             )}
-            {currentModifierData.IsBool && (
-              <FormGroup as={Row}>
-                <Form.Label column sm="2">
-                  Bool Value:
-                </Form.Label>
-                <Col sm="10">
-                  <FormCheck disabled checked={currentModifierData.BoolValue}/>
-                </Col>
-              </FormGroup>
-            )}
-            {currentModifierData.IsInt && (
-              <ReadOnlyTextField label="Int Value" value={currentModifierData.IntValue} />
-            )}
-          </Form>
-        </div>
+          </div>
+        </>
       )}
     </Container>
   );

@@ -22,12 +22,18 @@ const InventoryActionComponent = ({ action }) => {
   useEffect(() => {
     setCurrentAction(action);
     getActionDetails();
-    setHasModifiers(currentAction.ModifierOverrides && currentAction.ModifierOverrides.length > 0);
+    setHasModifiers(
+      currentAction.ModifierOverrides &&
+        currentAction.ModifierOverrides.length > 0
+    );
   }, [action]);
 
   useEffect(() => {
     getActionDetails();
-    setHasModifiers(currentAction.ModifierOverrides && currentAction.ModifierOverrides.length > 0);
+    setHasModifiers(
+      currentAction.ModifierOverrides &&
+        currentAction.ModifierOverrides.length > 0
+    );
   }, []);
 
   return (
@@ -45,11 +51,13 @@ const InventoryActionComponent = ({ action }) => {
           </div>
         )}
       </h4>
-      <h4>Modifier Overrides</h4>
-      {hasModifiers &&
-        action.ModifierOverrides.map((modifier, modIndex) => (
-          <InventoryModifierComponent modifier={modifier} />
-        ))}
+      {hasModifiers && (
+        <>
+          {action.ModifierOverrides.map((modifier, modIndex) => (
+            <InventoryModifierComponent modifier={modifier} key={modIndex} />
+          ))}
+        </>
+      )}
     </div>
   );
 };

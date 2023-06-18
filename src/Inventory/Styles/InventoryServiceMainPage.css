@@ -8,3 +8,47 @@
   margin: 10px;
   overflow-y: auto;
 }
+
+.inventory-modifier-component-container {
+  width: 500px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.inventory-modifier-component-container h4 {
+  position: relative;
+}
+
+.inventory-modifier-component-container .line {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 55px;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #333, transparent);
+}
+
+.inventory-modifier-component-container .form-content {
+  position: relative;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inventory-modifier-expand-button {
+  position: absolute;
+  left: 0;
+}
+
+.inventory-modifier-component-container .button-heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}

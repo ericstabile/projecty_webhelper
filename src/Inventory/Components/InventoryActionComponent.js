@@ -52,11 +52,21 @@ const InventoryActionComponent = ({ action }) => {
         )}
       </h4>
       {hasModifiers && (
-        <>
-          {action.ModifierOverrides.map((modifier, modIndex) => (
-            <InventoryModifierComponent modifier={modifier} key={modIndex} />
-          ))}
-        </>
+        <div className="inventory-action-modifier-container">
+          {currentActionDetails.Modifiers.map((modifier, index) => {
+            const override = action.ModifierOverrides.find(
+              (mo) => mo.ID === modifier.ID
+            );
+            const displayModifier = override || modifier;
+            return (
+              <InventoryModifierComponent
+                modifier={displayModifier}
+                key={index}
+                isOverwritten={override}
+              />
+            );
+          })}
+        </div>
       )}
     </div>
   );

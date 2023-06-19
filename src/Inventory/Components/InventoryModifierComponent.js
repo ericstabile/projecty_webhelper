@@ -2,18 +2,16 @@ import React, { useState, useContext, useEffect, useCallback } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import { 
-  BiArrowToTop,
-  BiArrowToBottom 
-} from "react-icons/bi";
+import { BiArrowToTop, BiArrowToBottom } from "react-icons/bi";
 import {
   ReadOnlyTextField,
   ReadOnlyFormCheckField,
 } from "../../GlobalComponents/ReadOnlyFormGroupFields/ReadOnlyFormGroupFieldsComponent";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 
-const InventoryModifierComponent = ({ modifier }) => {
+const InventoryModifierComponent = ({ modifier, isOverwritten }) => {
   const [currentModifier, setCurrentModifier] = useState(modifier);
+  const [overwritten, setOverwritten] = useState(isOverwritten);
   const [currentModifierData, setCurrentModifierData] = useState(null);
   const [isModifierExpanded, setIsModifierExpanded] = useState(false);
 
@@ -39,19 +37,27 @@ const InventoryModifierComponent = ({ modifier }) => {
     getModifierDetails();
   }, [modifier, getModifierDetails]);
 
+  useEffect(() => {
+    setOverwritten(isOverwritten);
+  }, [isOverwritten]);
+
   return (
-    <Container key={currentModifier.ID}>
+    <div key={currentModifier.ID} className="inventory-modifier-component">
       {currentModifierData && (
         <>
-          <div className="inventory-modifier-component-container">
-          <div className="button-heading-container"> {/* Added container */}
+          <div
+            className={`inventory-modifier-component-container ${
+              overwritten ? "inventory-modifier-overwritten" : ""
+            }`}
+          >
+            <div className="button-heading-container">
               <Button
                 className="inventory-modifier-expand-button"
                 onClick={handleExpandClickEvent}
               >
-                {isModifierExpanded ? <BiArrowToTop /> : <BiArrowToBottom /> }
+                {isModifierExpanded ? <BiArrowToTop /> : <BiArrowToBottom />}
               </Button>
-              <h4>Modifier Overrides</h4>
+              <h4>{currentModifierData.Name}</h4>
             </div>
             <div className="line"></div>
             {isModifierExpanded && (
@@ -60,10 +66,6 @@ const InventoryModifierComponent = ({ modifier }) => {
                   controlId="ModifierID"
                   label="Modifier ID"
                   value={currentModifier.ID}
-                />
-                <ReadOnlyTextField
-                  label="Modifier Name"
-                  value={currentModifierData.Name}
                 />
                 <ReadOnlyTextField
                   label="Modifier Description"
@@ -101,7 +103,7 @@ const InventoryModifierComponent = ({ modifier }) => {
           </div>
         </>
       )}
-    </Container>
+    </div>
   );
 };
 

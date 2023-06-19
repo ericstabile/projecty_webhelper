@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
 .inventory-service-main-container {
   width: 100%;
   max-width: 1700px;
@@ -9,8 +11,22 @@
   overflow-y: auto;
 }
 
+/* Inventory Action Section */
+.inventory-action-modifier-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Inventory Modifier Section */
+.inventory-modifier-component {
+  flex: 0 1 calc(50% - 10px);
+  max-width: 50%;
+}
+
 .inventory-modifier-component-container {
-  width: 500px;
+  flex: 1 0 calc(50% - 10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   padding: 20px;
@@ -20,6 +36,7 @@
 
 .inventory-modifier-component-container h4 {
   position: relative;
+  font-family: "Dancing Script", cursive;
 }
 
 .inventory-modifier-component-container .line {
@@ -51,4 +68,22 @@
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.inventory-modifier-overwritten {
+  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #96fbc4);
+  background-size: 200% 200%;
+  animation: Gradient 30s ease infinite;
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

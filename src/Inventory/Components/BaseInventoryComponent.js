@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { Form } from "react-bootstrap";
 import InventoryActionComponent from "./InventoryActionComponent";
+import {
+  ReadOnlyTextField,
+  ReadOnlyFormCheckField,
+} from "../../GlobalComponents/ReadOnlyFormGroupFields/ReadOnlyFormGroupFieldsComponent";
 
 const BaseInventoryComponent = ({
   invIndex,
   inventoryObject,
   actionChange,
   modifierChange,
-  setInventoryData
+  setInventoryData,
 }) => {
   const [currentInventoryObject, setCurrentInventoryObject] =
     useState(inventoryObject);
@@ -31,9 +36,7 @@ const BaseInventoryComponent = ({
   const handleIndividualSpriteChange = (e) => {
     setInventoryData((prevInventoryData) =>
       prevInventoryData.map((item, index) =>
-        index === idx
-          ? { ...item, IsIndividualSprite: e.target.checked }
-          : item
+        index === idx ? { ...item, IsIndividualSprite: e.target.checked } : item
       )
     );
   };
@@ -43,71 +46,42 @@ const BaseInventoryComponent = ({
   }, [inventoryObject]);
 
   return (
-    <div key={idx}>
-      <h3>Inventory Item {idx + 1}</h3>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="Name"
-          value={currentInventoryObject.Name}
-          onChange={(e) => handleActionChange(e)}
-        />
-      </label>
-      <label>
-        Icon Path:
-        <input
-          type="text"
-          name="IconPath"
+    <div key={idx} className="inventory-inventory-component-container sketchy">
+      <h3>
+        {currentInventoryObject.Name} (ID: {currentInventoryObject.ID})
+      </h3>
+      <Form>
+        <ReadOnlyTextField
+          controlId={`iconpath_${idx}`}
+          label="Icon Path"
           value={currentInventoryObject.IconPath}
-          onChange={(e) => handleActionChange(e)}
         />
-      </label>
-      <label>
-        Is Stackable:
-        <input
-          type="checkbox"
-          name="IsStackable"
-          checked={currentInventoryObject.IsStackable}
-          onChange={(e) => handleStackChange(e)}
+        <ReadOnlyFormCheckField
+          controlId={`isstackable_${idx}`}
+          label="Is Stackable"
+          value={currentInventoryObject.IsStackable}
         />
-      </label>
-      <label>
-        Max Stack:
-        <input
-          type="text"
-          name="MaxStack"
+        <ReadOnlyTextField
+          controlId={`maxstack_${idx}`}
+          label="Max Stack"
           value={currentInventoryObject.MaxStack}
-          onChange={(e) => handleActionChange(e)}
         />
-      </label>
-      <label>
-        Is Individual Sprite:
-        <input
-          type="checkbox"
-          name="IsIndividualSprite"
-          checked={currentInventoryObject.IsIndividualSprite}
-          onChange={(e) => handleIndividualSpriteChange(e)}
+        <ReadOnlyFormCheckField
+          controlId={`isindividual_${idx}`}
+          label="Is Individual Sprite"
+          value={currentInventoryObject.IsIndividualSprite}
         />
-      </label>
-      <label>
-        X:
-        <input
-          type="text"
-          name="X"
+        <ReadOnlyTextField
+          controlId={`x_${idx}`}
+          label="X"
           value={currentInventoryObject.X}
-          onChange={(e) => handleActionChange(e)}
         />
-      </label>
-      <label>
-        Y:
-        <input
-          type="text"
-          name="Y"
+        <ReadOnlyTextField
+          controLId={`y_${idx}`}
+          label="Y"
           value={currentInventoryObject.Y}
-          onChange={(e) => handleActionChange(e)}
         />
-      </label>
+      </Form>
       <h3>Actions</h3>
       {currentInventoryObject.Actions.map((action, actIndex) => (
         <InventoryActionComponent key={actIndex} action={action} />

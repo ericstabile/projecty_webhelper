@@ -9,7 +9,6 @@ import TopRowComponent from "../GlobalComponents/TopRow/TopRowComponent";
 import LoadJsonComponent from "../GlobalComponents/LoadJsonComponent/LoadJsonComponent";
 import { AppContext } from "../GlobalComponents/Contexts/AppContext";
 import { InventoryContext } from "../GlobalComponents/Contexts/InventoryContext";
-import ModalComponent from "../GlobalComponents/ModalComponent/ModalComponent";
 import InventoryDataComponent from "./Components/InventoryDataComponent";
 
 const InventoryServiceMainPage = () => {

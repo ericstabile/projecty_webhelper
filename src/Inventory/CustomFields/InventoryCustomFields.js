@@ -1,6 +1,20 @@
-// import React from "react";
-// import { FormGroup, Form, Row, Col } from "react-bootstrap";
-// import FormCheck from "react-bootstrap/FormCheck";
+import React from "react";
+import { FormGroup, Form, Row } from "react-bootstrap";
+
+export const RO_MultiLine = ({ controlId, label, value }) => (
+  <FormGroup as={Row} controlId={controlId}>
+    <Form.Label className="cf-label-underline"><b>{label}</b></Form.Label>
+    <Form.Label className="cf-label-underline">{value}</Form.Label>
+  </FormGroup>
+);
+
+export const RO_SingleLine = ({ controlId, label, value }) => (
+  <FormGroup as={Row} controlId={controlId}>
+    <Form.Label className="cf-label-underline">
+      <b>{label}</b>: {value}
+    </Form.Label>
+  </FormGroup>
+);
 
 // export const ReadOnlyTextField = ({ controlId, label, value }) => (
 //   <FormGroup as={Row} controlId={controlId}>

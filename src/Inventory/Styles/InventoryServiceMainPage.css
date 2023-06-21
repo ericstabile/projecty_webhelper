@@ -14,10 +14,45 @@
 .inventory-inventory-component-container {
   padding:5px;
   margin-bottom:10px;
+  width:45%;
+  height: 475px;
+  margin:5px;
+}
+.inventory-inventory-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  margin: 20px auto 0; /* 20px top margin added */
 }
 
+.inventory-inventory-previous-button,
+.inventory-inventory-next-button {
+  background: linear-gradient(90deg, #FF7F50 0%, #000000 100%); /* Changed to Halloween theme: orange to black gradient */
+  color: white;
+  border: none;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0px 10px 10px -7px rgba(0,0,0,0.75);
+  transition: all 0.3s ease;
+}
+
+.inventory-inventory-previous-button:hover,
+.inventory-inventory-next-button:hover {
+  box-shadow: 0px 14px 14px -7px rgba(0,0,0,0.75);
+  transform: scale(1.05);
+}
+
+.inventory-inventory-previous-button:active,
+.inventory-inventory-next-button:active {
+  transform: scale(0.95);
+}
+
+
 .sketchy {
-  /* padding: 4rem 8rem; */
   padding: 30px;
   display: inline-block;
   border: 3px solid #333333;
@@ -39,6 +74,11 @@
       transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
       border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
   }
+}
+
+.cf-label-underline {
+  border-bottom: 1px solid black;
+  text-align:left;
 }
 
 /* Inventory Action Section */

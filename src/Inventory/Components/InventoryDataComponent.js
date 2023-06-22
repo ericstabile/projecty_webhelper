@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 import BaseInventoryComponent from "./BaseInventoryComponent";
+import InventoryNavButtonsComponent from "./InventoryNavButtonsComponent";
 
 const InventoryDataComponent = () => {
   const { inventoryObjectData, setInventoryObjectData } =
@@ -70,33 +71,16 @@ const InventoryDataComponent = () => {
                 actionChange={handleActionChange}
                 modifierChange={handleModifierChange}
                 setInventoryData={setInventoryObjectData}
-                isDefault={false}
+                isDefault={inventoryItem.Name === "_default_"}
               />
             ))}
-          {currentPage === numberOfPages - 1 && (
-            <BaseInventoryComponent
-              invIndex={inventoryObjectData.length}
-              isDefault={true}
-            />
-          )}
         </div>
       </form>
-      <div className="inventory-inventory-nav-buttons">
-        <button
-          className="inventory-inventory-previous-button"
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 0}
-        >
-          Previous
-        </button>
-        <button
-          className="inventory-inventory-next-button"
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === numberOfPages - 1}
-        >
-          Next
-        </button>
-      </div>
+      <InventoryNavButtonsComponent
+        page={currentPage}
+        pageCount={numberOfPages}
+        setPageHandler={setCurrentPage}
+      />
     </div>
   ) : (
     <div>Inventory data not loaded</div>

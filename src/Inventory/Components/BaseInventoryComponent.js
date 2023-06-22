@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import InventoryActionComponent from "./InventoryActionComponent";
 import {
   RO_MultiLine,
@@ -47,9 +47,34 @@ const BaseInventoryComponent = ({
     setCurrentInventoryObject(inventoryObject);
   }, [inventoryObject]);
 
+  useEffect(() => {
+    setIsDefaultComponent(isDefault);
+  }, [isDefault]);
+
+  useEffect(() => {
+    console.log("isDefaultComponent", isDefaultComponent);
+  }, []);
+
   return (
     <div key={idx} className="inventory-inventory-component-container sketchy">
-      {isDefaultComponent && <div>Hi. I am a default component.</div>}
+      {isDefaultComponent && (
+        <div className="inventory-inventory-default">
+          <span>
+            <b>Add New Inventory Object</b>
+          </span>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Button
+            className="inventory-inventory-default-button"
+            variant="success"
+          >
+            +
+          </Button>
+        </div>
+      )}
 
       {!isDefaultComponent && (
         <div>

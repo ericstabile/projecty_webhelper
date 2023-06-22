@@ -12,22 +12,29 @@
 }
 
 .inventory-inventory-component-container {
-  padding:5px;
-  margin-bottom:10px;
-  width:45%;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 45%;
   height: 475px;
-  margin:5px;
+  margin: 5px;
+  display: inline-table;
 }
+
+.inventory-inventory-default-button {
+  width: 50px;
+  height: 50px;
+}
+
 .inventory-inventory-nav-buttons {
   display: flex;
   justify-content: space-between;
   width: 220px;
-  margin: 20px auto 0; /* 20px top margin added */
+  margin: 20px auto 0;
 }
 
 .inventory-inventory-previous-button,
 .inventory-inventory-next-button {
-  background: linear-gradient(90deg, #FF7F50 0%, #000000 100%); /* Changed to Halloween theme: orange to black gradient */
+  background: linear-gradient(90deg, #FF7F50 0%, #000000 100%);
   color: white;
   border: none;
   width: 100px;
@@ -51,10 +58,8 @@
   transform: scale(0.95);
 }
 
-
 .sketchy {
   padding: 30px;
-  display: inline-block;
   border: 3px solid #333333;
   border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
   text-transform: uppercase;

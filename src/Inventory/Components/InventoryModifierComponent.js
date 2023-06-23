@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { BiArrowToTop, BiArrowToBottom } from "react-icons/bi";
-import {
-  ReadOnlyTextField,
-  ReadOnlyFormCheckField,
-} from "../../GlobalComponents/ReadOnlyFormGroupFields/ReadOnlyFormGroupFieldsComponent";
+import { 
+  BiArrowToTop, 
+  BiArrowToBottom 
+} from "react-icons/bi";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
+import { RO_MultiLine } from "../CustomFields/InventoryCustomFields";
 
 const InventoryModifierComponent = ({ modifier, isOverwritten }) => {
   const [currentModifier, setCurrentModifier] = useState(modifier);
@@ -61,29 +61,30 @@ const InventoryModifierComponent = ({ modifier, isOverwritten }) => {
             <div className="line"></div>
             {isModifierExpanded && (
               <Form>
-                <ReadOnlyTextField
+                <br />
+                <RO_MultiLine
                   controlId="ModifierID"
                   label="Modifier ID"
                   value={currentModifier.ID}
                 />
-                <ReadOnlyTextField
+                <RO_MultiLine
                   label="Modifier Description"
                   value={currentModifierData.Description}
                 />
                 {currentModifierData.IsString && (
-                  <ReadOnlyTextField
+                  <RO_MultiLine
                     label="String Value"
                     value={currentModifierData.StringValue}
                   />
                 )}
                 {currentModifierData.IsBool && (
-                  <ReadOnlyFormCheckField
+                  <RO_MultiLine
                     label="Bool Value"
-                    value={currentModifierData.BoolValue}
+                    value={currentModifierData.BoolValue === true ? "TRUE" : "FALSE"}
                   />
                 )}
                 {currentModifierData.IsInt && (
-                  <ReadOnlyTextField
+                  <RO_MultiLine
                     label="Int Value"
                     value={currentModifierData.IntValue}
                   />
@@ -91,7 +92,7 @@ const InventoryModifierComponent = ({ modifier, isOverwritten }) => {
 
                 {modifier.OverrideValue !== null &&
                   modifier.OverrideValue !== undefined && (
-                    <ReadOnlyTextField
+                    <RO_MultiLine
                       controlId="OverrideValue"
                       label="Override Value"
                       value={modifier.OverrideValue}

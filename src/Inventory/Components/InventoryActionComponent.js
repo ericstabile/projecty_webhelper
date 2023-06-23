@@ -1,11 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { AppContext } from "../../GlobalComponents/Contexts/AppContext";
 import InventoryModifierComponent from "./InventoryModifierComponent";
-import ButtonGlitch from "../../GlobalComponents/ButtonGlitch/ButtonGlitch";
-import {
-  ReadOnlyTextField,
-  ReadOnlyFormCheckField,
-} from "../../GlobalComponents/ReadOnlyFormGroupFields/ReadOnlyFormGroupFieldsComponent";
 
 const InventoryActionComponent = ({ action }) => {
   const [currentAction, setCurrentAction] = useState(action);
@@ -56,10 +52,14 @@ const InventoryActionComponent = ({ action }) => {
           <div className="inventory-action-details">
             <div className="inventory-action-heading-container">
               <div className="left">
-                <ButtonGlitch
-                  buttonText={"Expand"}
-                  handleClickEvent={handleExpandActionClickEvent}
-                />
+                <Button
+                  className="inventory-action-expand-button"
+                  variant="success"
+                  onClick={handleExpandActionClickEvent}
+                >
+                  {isActionExpanded && <b>Hide</b>}
+                  {!isActionExpanded && <b>Show</b>}
+                </Button>
               </div>
               <div className="center">
                 <h4>
@@ -68,7 +68,7 @@ const InventoryActionComponent = ({ action }) => {
               </div>
               <div className="right"></div>
             </div>
-              <div className="line"></div>
+            <div className="line"></div>
             {isActionExpanded && (
               <label>
                 Short Description: {currentActionDetails.Description_Short}

@@ -141,6 +141,10 @@
   gap: 20px;
 }
 
+.inventory-action-expand-button {
+  margin-top:40px;
+}
+
 /* Inventory Modifier Section */
 .inventory-modifier-component {
   flex: 0 1 calc(50% - 10px);
@@ -157,6 +161,7 @@
   padding: 20px;
   margin: 0 auto;
   position: relative;
+  width:620px;
 }
 
 .inventory-modifier-component-container h4 {

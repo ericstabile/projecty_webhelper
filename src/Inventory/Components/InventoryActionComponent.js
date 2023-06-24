@@ -80,7 +80,7 @@ const InventoryActionComponent = ({ action }) => {
       {hasModifiers && isActionExpanded && (
         <div className="inventory-action-modifier-container">
           {currentActionDetails.Modifiers.map((modifier, index) => {
-            const override = action.ModifierOverrides.find(
+            const override = action.ModifierOverrides?.find(
               (mo) => mo.ID === modifier.ID
             );
             const displayModifier = override || modifier;

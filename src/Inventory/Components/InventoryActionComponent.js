@@ -25,21 +25,22 @@ const InventoryActionComponent = ({ action }) => {
     }
   };
 
+  const getModifierDetails = () => {
+    let showModifiers = 
+      (currentAction?.ModifierOverrides && currentAction?.ModifierOverrides.length > 0) ||
+      (currentActionDetails?.Modifiers && currentActionDetails?.Modifiers.length > 0);
+    setHasModifiers(showModifiers);
+  };
+
   useEffect(() => {
     setCurrentAction(action);
     getActionDetails();
-    setHasModifiers(
-      currentAction.ModifierOverrides &&
-        currentAction.ModifierOverrides.length > 0
-    );
+    getModifierDetails();
   }, [action]);
 
   useEffect(() => {
     getActionDetails();
-    setHasModifiers(
-      currentAction.ModifierOverrides &&
-        currentAction.ModifierOverrides.length > 0
-    );
+    getModifierDetails();
   }, []);
 
   return (

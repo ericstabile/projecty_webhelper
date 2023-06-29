@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import InventoryActionComponent from "./InventoryActionComponent";
-import {
-  RO_MultiLine,
-  RO_SingleLine,
-} from "../CustomFields/InventoryCustomFields";
+import BaseInventoryDetailsComponent from "./BaseInventoryDetailsComponent";
 
 const BaseInventoryComponent = ({
   invIndex,
@@ -18,6 +15,17 @@ const BaseInventoryComponent = ({
     useState(inventoryObject);
   const [idx, setIdx] = useState(invIndex);
   const [isDefaultComponent, setIsDefaultComponent] = useState(isDefault);
+  const [isAddingComponent, setIsAddingComponent] = useState(false);
+
+  const baseInventoryDetailsObj = {
+    Name: "",
+    IconPath: "",
+    IsStackable: false,
+    MaxStack: 1,
+    IsIndividualSprite: false,
+    X: 1,
+    Y: 1,
+  };
 
   const handleActionChange = (e) => {
     actionChange(idx, e);
@@ -43,6 +51,10 @@ const BaseInventoryComponent = ({
     );
   };
 
+  const handleAddNewInventoryObject = () => {
+    setIsAddingComponent(!isAddingComponent);
+  };
+
   useEffect(() => {
     setCurrentInventoryObject(inventoryObject);
   }, [inventoryObject]);
@@ -51,68 +63,35 @@ const BaseInventoryComponent = ({
     setIsDefaultComponent(isDefault);
   }, [isDefault]);
 
-  useEffect(() => {
-    console.log("isDefaultComponent", isDefaultComponent);
-  }, []);
-
   return (
     <div key={idx} className="inventory-inventory-component-container sketchy">
-      {isDefaultComponent && (
+      {isDefaultComponent && !isAddingComponent && (
         <div className="inventory-inventory-default">
           <span>
             <b>Add New Inventory Object</b>
           </span>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
           <Button
             className="inventory-inventory-default-button"
             variant="success"
+            onClick={handleAddNewInventoryObject}
+            enabled="true"
           >
             +
           </Button>
         </div>
       )}
 
+      {isDefaultComponent && isAddingComponent && <div>We are adding</div>}
+
       {!isDefaultComponent && (
         <div>
           <h3>
             {currentInventoryObject.Name} (ID: {currentInventoryObject.ID})
           </h3>
-          <Form>
-            <RO_MultiLine
-              controlId={`iconpath_${idx}`}
-              label="Icon Path"
-              value={currentInventoryObject.IconPath}
-            />
-            <RO_SingleLine
-              controlId={`isstackable_${idx}`}
-              label="Is Stackable"
-              value={currentInventoryObject.IsStackable ? "Yes" : "No"}
-            />
-            <RO_SingleLine
-              controlId={`maxstack_${idx}`}
-              label="Max Stack"
-              value={currentInventoryObject.MaxStack}
-            />
-            <RO_SingleLine
-              controlId={`isindividual_${idx}`}
-              label="Is Individual Sprite"
-              value={currentInventoryObject.IsIndividualSprite ? "Yes" : "No"}
-            />
-            <RO_SingleLine
-              controlId={`x_${idx}`}
-              label="X"
-              value={currentInventoryObject.X}
-            />
-            <RO_SingleLine
-              controLId={`y_${idx}`}
-              label="Y"
-              value={currentInventoryObject.Y}
-            />
-          </Form>
+          <BaseInventoryDetailsComponent
+            index={idx}
+            inventoryObj={currentInventoryObject}
+          />
           <h3>Actions</h3>
           {currentInventoryObject.Actions.map((action, actIndex) => (
             <InventoryActionComponent key={actIndex} action={action} />

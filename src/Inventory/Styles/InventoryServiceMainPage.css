@@ -21,7 +21,7 @@
 }
 
 .inventory-inventory-component-details-form {
-  border: 1px solid black;
+  margin: 1px;
 }
 
 .inventory-inventory-default-button {
@@ -88,6 +88,30 @@
 .cf-label-underline {
   border-bottom: 1px solid black;
   text-align:left;
+  padding-top:3px;
+}
+
+.cf-control-underline-multi {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 1px solid black;
+  text-align: left;
+  resize: none;
+}
+
+.cf-control-underline-single {
+    box-sizing: border-box;
+      border: none;
+      outline: none;
+      background: none;
+      text-align: left;
+      resize: none;
+}
+
+.cf-control-boolean {
+  margin-top:5px;
 }
 
 /* Inventory Action Section */

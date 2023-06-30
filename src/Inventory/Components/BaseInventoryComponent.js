@@ -81,15 +81,21 @@ const BaseInventoryComponent = ({
         </div>
       )}
 
-      {isDefaultComponent && isAddingComponent && <div>We are adding</div>}
+      {isDefaultComponent && isAddingComponent && (
+        <div>
+          <BaseInventoryDetailsComponent
+            index={idx}
+            editState={isAddingComponent}
+            inventoryObj={baseInventoryDetailsObj}
+          />
+        </div>
+      )}
 
       {!isDefaultComponent && (
         <div>
-          <h3>
-            {currentInventoryObject.Name} (ID: {currentInventoryObject.ID})
-          </h3>
           <BaseInventoryDetailsComponent
             index={idx}
+            editState={false}
             inventoryObj={currentInventoryObject}
           />
           <h3>Actions</h3>

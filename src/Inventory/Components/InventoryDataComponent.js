@@ -66,7 +66,7 @@ const InventoryDataComponent = () => {
             .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
             .map((inventoryItem, invIndex) => (
               <BaseInventoryComponent
-                invIndex={invIndex + currentPage * itemsPerPage}
+                invIndex={inventoryItem.ID}
                 inventoryObject={inventoryItem}
                 actionChange={handleActionChange}
                 modifierChange={handleModifierChange}

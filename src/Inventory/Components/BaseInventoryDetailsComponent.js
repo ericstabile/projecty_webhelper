@@ -15,6 +15,13 @@ const BaseInventoryDetailsComponent = ({ index, editState, inventoryObj }) => {
     useState(inventoryObj);
   const [isEditing, setIsEditing] = useState(editState);
 
+  const handleNameEdit = (e) => {
+    setCurrentInventoryObject((prevState) => ({
+      ...prevState,
+      Name: e.target.value,
+    }));
+  };
+
   const handleIconPathEdit = (e) => {
     setCurrentInventoryObject((prevState) => ({
       ...prevState,
@@ -74,7 +81,16 @@ const BaseInventoryDetailsComponent = ({ index, editState, inventoryObj }) => {
       <div className="inventory-inventory-component-details-form">
         {isEditing && (
           <>
-            <h3>Soon I Can Be Edited (ID: -1)</h3>
+            <h3>
+              <Form.Control
+                type="text"
+                className="inventory-inventory-component-name"
+                placeholder="Enter Name"
+                value={currentInventoryObject.Name}
+                onChange={handleNameEdit}
+              />{" "}
+              (ID: {idx})
+            </h3>
             <Form>
               <Edit_MultiLine
                 controlId={`edit_iconpath_${idx}`}

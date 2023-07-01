@@ -18,6 +18,7 @@ const BaseInventoryComponent = ({
   const [isAddingComponent, setIsAddingComponent] = useState(false);
 
   const baseInventoryDetailsObj = {
+    ID: { idx },
     Name: "",
     IconPath: "",
     IsStackable: false,
@@ -57,6 +58,10 @@ const BaseInventoryComponent = ({
 
   useEffect(() => {
     setCurrentInventoryObject(inventoryObject);
+
+    if (isDefault) {
+      setIdx(inventoryObject.ID);
+    }
   }, [inventoryObject]);
 
   useEffect(() => {

@@ -8,8 +8,14 @@ import {
   Edit_SingleLine,
   Edit_Boolean,
 } from "../CustomFields/InventoryCustomFields";
+import { FiSave } from "react-icons/fi";
 
-const BaseInventoryDetailsComponent = ({ index, editState, inventoryObj }) => {
+const BaseInventoryDetailsComponent = ({
+  index,
+  editState,
+  inventoryObj,
+  saveChanges,
+}) => {
   const [idx, setIdx] = useState(index);
   const [currentInventoryObject, setCurrentInventoryObject] =
     useState(inventoryObj);
@@ -18,7 +24,7 @@ const BaseInventoryDetailsComponent = ({ index, editState, inventoryObj }) => {
   const handleNameEdit = (e) => {
     setCurrentInventoryObject((prevState) => ({
       ...prevState,
-      Name: e.target.value,
+      Name: e,
     }));
   };
 
@@ -64,6 +70,10 @@ const BaseInventoryDetailsComponent = ({ index, editState, inventoryObj }) => {
     }));
   };
 
+  const saveChangesHandler = () => {
+    saveChanges(currentInventoryObject);
+  };
+
   useEffect(() => {
     setIdx(index);
   }, [index]);
@@ -81,16 +91,26 @@ const BaseInventoryDetailsComponent = ({ index, editState, inventoryObj }) => {
       <div className="inventory-inventory-component-details-form">
         {isEditing && (
           <>
-            <h3>
-              <Form.Control
-                type="text"
-                className="inventory-inventory-component-name"
-                placeholder="Enter Name"
-                value={currentInventoryObject.Name}
-                onChange={handleNameEdit}
-              />{" "}
-              (ID: {idx})
-            </h3>
+            <div className="inventory-inventory-component-header-container">
+              <div className="inventory-inventory-component-text-container">
+                <h3>
+                  <Form.Control
+                    type="text"
+                    className="inventory-inventory-component-name"
+                    placeholder="Enter Name"
+                    value={currentInventoryObject.Name}
+                    onChange={handleNameEdit}
+                  />{" "}
+                  (ID: {idx})
+                </h3>
+              </div>
+              <button
+                className="edit-button"
+                onClick={() => saveChangesHandler()}
+              >
+                <FiSave />
+              </button>
+            </div>
             <Form>
               <Edit_MultiLine
                 controlId={`edit_iconpath_${idx}`}

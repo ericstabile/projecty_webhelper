@@ -3,6 +3,18 @@ import { Button } from "react-bootstrap";
 import InventoryActionComponent from "./InventoryActionComponent";
 import BaseInventoryDetailsComponent from "./BaseInventoryDetailsComponent";
 
+const defaultInventoryObject = {
+  ID: -1,
+  Name: "_default_",
+  IconPath: "res://",
+  IsStackable: false,
+  MaxStack: "1",
+  IsIndividualSprite: false,
+  X: "1",
+  Y: "1",
+  Actions: [],
+};
+
 const BaseInventoryComponent = ({
   invIndex,
   inventoryObject,
@@ -16,17 +28,6 @@ const BaseInventoryComponent = ({
   const [idx, setIdx] = useState(invIndex);
   const [isDefaultComponent, setIsDefaultComponent] = useState(isDefault);
   const [isAddingComponent, setIsAddingComponent] = useState(false);
-
-  const baseInventoryDetailsObj = {
-    ID: { idx },
-    Name: "",
-    IconPath: "",
-    IsStackable: false,
-    MaxStack: 1,
-    IsIndividualSprite: false,
-    X: 1,
-    Y: 1,
-  };
 
   const handleActionChange = (e) => {
     actionChange(idx, e);
@@ -54,6 +55,35 @@ const BaseInventoryComponent = ({
 
   const handleAddNewInventoryObject = () => {
     setIsAddingComponent(!isAddingComponent);
+  };
+
+  const saveNewInventoryObjectHandler = (obj) => {
+    setInventoryData((prevInventoryData) =>
+      prevInventoryData.map((item, index) =>
+        item.ID === obj.ID
+          ? {
+              ...item,
+              Name: obj.Name,
+              IconPath: obj.IconPath,
+              IsStackable: obj.IsStackable,
+              MaxStack: obj.MaxStack,
+              IsIndividualSprite: obj.IsIndividualSprite,
+              X: obj.X,
+              Y: obj.Y,
+            }
+          : item
+      )
+    );
+
+    const newID = 1;
+    const defaultObjectCopy = {...defaultInventoryObject, ID: newID};
+  };
+
+  const updateExistingInventoryObjectHandler = (obj) => {
+    console.log(
+      "object from base inventory component updateExistingInventoryObjectHandler",
+      obj
+    );
   };
 
   useEffect(() => {
@@ -91,7 +121,8 @@ const BaseInventoryComponent = ({
           <BaseInventoryDetailsComponent
             index={idx}
             editState={isAddingComponent}
-            inventoryObj={baseInventoryDetailsObj}
+            inventoryObj={currentInventoryObject}
+            saveChanges={saveNewInventoryObjectHandler}
           />
         </div>
       )}
@@ -102,6 +133,7 @@ const BaseInventoryComponent = ({
             index={idx}
             editState={false}
             inventoryObj={currentInventoryObject}
+            saveChanges={updateExistingInventoryObjectHandler}
           />
           <h3>Actions</h3>
           {currentInventoryObject.Actions.map((action, actIndex) => (

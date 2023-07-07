@@ -11,6 +11,14 @@ const InventoryDataComponent = () => {
   const itemsPerPage = 2;
   const numberOfPages = Math.ceil(inventoryObjectData.length / itemsPerPage);
 
+  const handleAddNewInventoryObject = (o) => {
+
+  };
+
+  const updateExistingInventoryObject = (o) => {
+
+  };
+
   const handleInventoryChange = (inventoryIndex, event) => {
     const { name, value } = event.target;
     let newInventoryData = [...inventoryObjectData];
